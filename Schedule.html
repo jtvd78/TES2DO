@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script>
+
+		//START SETTINGS
+			//Does it need an explaination?
+			var fontSize = 20;
+
+			//The font
+			var font = "Arial";
+
+			//The hours of the edge of the schedule. Values of 0-24. 6.5 would be 6:30AM, 13.5 would 1:30 PM
+			var startHour = 6;
+			var endHour = 9 + 12;
+
+			//The number of days to display in the week. 
+			var daysOfWeek = 5;			
+			
+			//Color settings
+			var gridColor = "#FFFFFF";
+			var timeLineColor = "#FF0000";
+			var backgroundColor = "#000000";
+		//END SETTINGS
+
+			//Current X and Y position of the mouse on the canvas
+			var mouseX;
+			var mouseY;
+
+			//Width, in pixels, of each day
+			var dayWidth;
+
+			//The number of minutes per pixel in the Y direction
+			var minPerPixelY;	
+
+			//Width and height of the canvas
+			var width, height;
+
+			//Displays the timeline when true. This gets toggled when the mouse enters and exits the canvas
+			var displayTimeLine = true;
+
+			//List of ClassTimes being displayed
+			var classTimeList = [
+				new ClassTime(new Time(12, 30), new Time(15, 30), "#0000FF", [1,3], "CMSC132", "0404"),
+				new ClassTime(new Time(9,15), new Time(11, 30), "#AA0000", [0,2,4], "MATH141", "0323")
+			];
+
+			//Kind of like a main method
+			$( document ).ready(function() {
+				start();	
+			});
+
+			//ClassTime class. This is the data for each block on the schedule
+			function ClassTime(start, end, color, days, courseID, section){
+				this.start = start;
+				this.end = end;
+				this.color = color;
+				this.days = days;
+				this.courseID = courseID;
+				this.section = section;
+			}
+
+			//Time class. Stores a time of day, percise to hours and minues
+			function Time(hour, min){
+				this.hour = hour;
+				this.min = min;
+
+				this.toMinutes = function(){
+					return hour*60 + min;
+				};
+			}		
+
+			//First method called when the page is ready
+			function start(){
+				$("#scheduleCanvas").mousemove(mouseMoved);
+				$("#scheduleCanvas").mouseenter(function() {
+					setDisplayTimeLine(true);
+				}).mouseleave(function() {
+					setDisplayTimeLine(false);
+				});
+
+				repaint();
+			}
+
+			//Sets whether or not to display the timeline
+			function setDisplayTimeLine(display){
+				displayTimeLine = display;
+				repaint();
+			}
+
+			//Called when the mouse is moved on the canvas
+			function mouseMoved(event){
+				var offset = $("#scheduleCanvas").offset();
+
+				mouseX = event.clientX - offset.left;
+				mouseY = event.clientY - offset.top;
+
+				repaint();
+			}
+
+			//Updates global variables. Called when repaint() is called
+			function updateVariables(){
+				var canvas=document.getElementById("scheduleCanvas");
+				width = canvas.width;
+				height = canvas.height;
+				dayWidth = width / daysOfWeek;
+				minPerPixelY = (endHour - startHour)*60/height;
+			}
+		
+			//Repaints the canvas
+			function repaint(){
+				updateVariables();
+
+				var canvas=document.getElementById("scheduleCanvas");
+				var context=canvas.getContext("2d");
+
+				//Sets font to above setting
+				context.font= fontSize + "px " + font;
+
+				//Centers font
+				context.textAlign="center"; 
+				context.textBaseline="middle";
+
+				//Draws background and grid
+				drawBackground(context);
+				drawGrid(context);
+
+				//Draws each classtime in the list of classtimes
+				for(c = 0; c < classTimeList.length; c++){
+					ct = classTimeList[c];
+					drawClassTime(ct, context);				
+				}
+
+				//Draws the timeline if its corrosponding boolean is true
+				if(displayTimeLine){
+					drawTimeLine(context);
+				}
+				
+			}
+
+			//Draws backgound
+			function drawBackground(context){
+				context.fillStyle = backgroundColor;
+				context.fillRect(0,0,width,height);
+			}
+
+			//Draws grid
+			function drawGrid(context){
+				context.strokeStyle = gridColor;
+
+				//Vertical
+				for(i = 1; i < daysOfWeek;  i++){
+					context.beginPath();
+					context.moveTo(dayWidth*i,0);
+					context.lineTo(dayWidth*i,height);
+					context.stroke();
+				}
+
+				//Horizontal
+				var startingHour = Math.floor(startHour);
+				for(h = startingHour; h < Math.ceil(endHour); h++){
+					console.log(h);
+					var y = (h-startHour)*60/minPerPixelY;
+					context.beginPath();
+					context.moveTo(0,y);
+					context.lineTo(width, y);
+					context.stroke();
+				}
+			}
+
+			//Draws a classtime
+			function drawClassTime(classTime, context){
+
+				//Loops through the days
+				for(dayCtr = 0; dayCtr < classTime.days.length; dayCtr++){
+
+					//Day of the week being drawn
+					var day = classTime.days[dayCtr];					
+					
+					//Info about classtime in minutes
+					var startMin = classTime.start.toMinutes();
+					var endMin = classTime.end.toMinutes();
+					var lengthMin = (endMin-startMin);
+
+					//Info about classtime in pixels
+					var ctX = day*dayWidth;
+					var ctY = (startMin - startHour*60)/minPerPixelY;
+					var ctWidth = dayWidth;
+					var ctHeight = lengthMin/minPerPixelY;
+
+					//Draws classtime box
+					context.fillStyle = classTime.color;
+					context.fillRect(ctX, ctY, ctWidth, ctHeight);
+
+					//Draws classtime text
+					context.fillStyle = "#000000";
+					context.drawText(classTime.courseID + "\n" + classTime.section, ctX + ctWidth/2,ctY + ctHeight/2);
+				}
+			}
+
+			//Prototype function to allow multiline text drawing through a context object
+			CanvasRenderingContext2D.prototype.drawText = function(text, x, y){
+				var lines = text.split("\n");
+				var lineHeight = fontSize;
+
+				for(i = 0; i < lines.length; i++){
+					var adj = i - (lines.length - 1)/2
+					var lineOffset = adj*lineHeight;
+					this.fillText(lines[i], x, y + lineOffset);
+				}
+			}
+
+			//Draws the timeline at the mouse
+			function drawTimeLine(context){
+				
+				//Sets proper colors
+				context.fillStyle = timeLineColor;
+				context.strokeStyle = timeLineColor;
+				
+
+				//Gets the time string, and draws it
+				var timeString = minToString(pxToMin(mouseY));
+				context.fillText(timeString, mouseX,mouseY - fontSize/2);
+
+				//Draws the horizonal line
+				context.beginPath();
+				context.moveTo(0,mouseY);
+				context.lineTo(width, mouseY);
+				context.stroke();
+			}
+
+			//Returns a random color
+			function getRandomColor(){
+				var letters = '0123456789ABCDEF'.split('');
+				var color = '#';
+	    		for (var i = 0; i < 6; i++ ) {
+	        		color += letters[Math.floor(Math.random() * 16)];
+	    		}
+	    		return color;
+			}
+
+			//Converts a pixel's Y coordinate to minutes
+			function pxToMin(px){
+				return startHour*60 + (px/height)*((endHour - startHour)*60)
+			}
+
+			//Converts minutes to a time string
+			function minToString(min){
+
+				var newMin = min % 60;
+				var hour = (min - newMin) / 60;
+				var pm = Math.floor(hour / 12);
+				hour -= pm*12;
+
+				if(hour == 0){
+					hour = 12;
+				}
+
+				var out = hour + ":" 
+
+				if(newMin < 10){
+					out+="0";
+				}
+
+				out += Math.round(newMin);
+
+				if(pm > 0){
+					out += " PM";
+				}else{
+					out += " AM";
+				}
+
+				return out;
+			}
+			
+		</script>
+	</head>	
+	
+	<body>
+		<canvas id="scheduleCanvas" width="1000" height="700" style="display:inline-block"></canvas>	
+	</body>
+</html>
