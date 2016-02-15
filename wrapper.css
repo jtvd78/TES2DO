@@ -91,6 +91,7 @@ a img { border: none; }
   min-height: 300px;
   background-color: #FFF;
   height:700px;
+  border:5px solid white;
 }
 
 /**
