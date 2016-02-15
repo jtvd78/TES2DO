@@ -261,7 +261,13 @@
 					tree = new Tree(data);
 					generateTree(tree);
 				})
-			});
+
+
+
+				console.log("Here");
+
+
+			});		
 
 			function generateTree(tree){
 				$("#treeDiv").append('<ol id ="treeOl" class="tree">');
@@ -297,33 +303,26 @@
 
 							//lecture
 							$('#section-' + section.id + '-'+ course.id +'-ol').append(
-								'<li id="courseTime-' + section.id + '-' + course.id + '-lecture-li" class="file">' +
+								'<li id="courseTime-' + section.id + '-' + course.id + '-lecture-li" class="file classTime hidden">' +
 								"Lecture</li>"
 
 								);
-
-
-							//Lecture on click
-							$('#courseTime-' + section.id + '-' + course.id + '-lecture-li').click(function(){
-								toggleDisplayed('courseTime-' + section.id + '-' + course.id + '-lecture-li');
-							})
 
 							//discussions
 							for(var d in section.discussions){
 								var discussion = section.discussions[d];
 								$('#section-' + section.id + '-'+ course.id +'-ol').append(
-								'<li id="courseTime-' + section.id + '-' + course.id + '-dis' + d + '-li" class="file">' +
+								'<li id="courseTime-' + section.id + '-' + course.id + '-dis' + d + '-li" class="file classTime hidden">' +
 								"Dicussion" + d + "</li>"
 								);
-
-								//Discussion on click
-								$('#courseTime-' + section.id + '-' + course.id + '-dis' + d + '-li').click(function(){
-									toggleDisplayed('courseTime-' + section.id + '-' + course.id + '-dis' + d + '-li');
-								})
 							}
 						}
 					}
 				}
+
+				$(".classTime").click(function(event){
+					toggleDisplayed(event.target.id);
+				});
 			}
 
 			function Tree(obj){
@@ -348,6 +347,10 @@
 				this.title = obj.title;
 				this.id = obj.id;
 				this.sections = [];
+				this.color = getRandomColor();
+
+				console.log(this.color);
+
 				for(var s in obj.sections){
 					this.sections.push(new Section(obj.sections[s], this));
 				}
@@ -356,6 +359,7 @@
 			function Section(obj, course){
 				this.id =  obj.id;
 				this.professor = obj.professor;
+				this.color = course.color;
 				this.lecture = new ClassTime(obj.lecture, this);
 				this.course = course;
 				if('discussions' in obj){
@@ -370,7 +374,7 @@
 				this.days = obj.days;
 				this.startTime = new Time(obj.startTime[0], obj.startTime[1]);
 				this.endTime = new Time(obj.endTime[0], obj.endTime[1]);
-				this.color = getRandomColor();
+				this.color = section.color;
 				this.section = section;
 			}
 
@@ -383,12 +387,14 @@
 
 				console.log(classTime);
 
-				//if($(idString).hasClass("displayed")){
+				if($('#'+idString).hasClass("displayed")){
+					$('#'+idString).toggleClass("displayed hidden");
 					//classTimeList.rem
-				//}else{
-
-				//}
-				classTimeList.push(classTime);
+				}else{
+					$('#'+idString).toggleClass("displayed hidden");
+					classTimeList.push(classTime);
+				}
+				
 				repaint();
 			}
 
@@ -406,7 +412,9 @@
 				if(split[3] == 'lecture'){
 					lecture = true;
 				}else{
-					disNumber = split[3].split("dis")[0];
+					console.log(split[3]);
+					disNumber = split[3].split("dis")[1];
+					console.log(disNumber);
 				}
 
 				console.log(sectionID + " : " + courseID + " : " + lecture + " : " + disNumber);
