@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="style2.css">
-	<title>Homepage</title>
-</head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="//umd.edu/wrapper/wrapper/2013/wrapper.css" />
+    <title>University of Maryland - Web Site Wrap</title>
+  </head>
 
-<body>
-	<h1>TEST2DO</h1>
-	<p>This is a paragraph</p>
-</body>
+  <body>
+  <div id="wrapper">
+    <div id="header">
+      
+      <form method="get" action="http://www.searchum.umd.edu/search">
+        <div id="search">
+          <input type="hidden" name="site" value="UMCP"/>
+          <input type="hidden" name="client" value="UMCP"/>
+          <input type="hidden" name="proxystylesheet" value="UMCP"/>
+          <input type="hidden" name="output" value="xml_no_dtd"/>
+
+          <div class="text">
+            <input type="text" name="q" size="15" title="Search UM" />
+          </div><input type="submit" value="Search" />
+
+          <input type="hidden" name="as_oq" value="site:" />
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+  </body>
 </html>
