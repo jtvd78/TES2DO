@@ -251,7 +251,7 @@ var tree;
 $(document).ready(function(){
 
 	
-	$.getJSON("http://localhost:8000/thing.json", function(data){
+	$.getJSON("http://localhost:8000/thing2.json", function(data){
 		tree = new Tree(data);
 		generateTree(tree);
 	})
@@ -341,7 +341,7 @@ function Prefix(obj){
 function Course(obj){
 	this.id = obj.id;
 	this.name = obj.name;	
-//	this.credits = credits;
+	this.credits = obj.credits;
 	this.subcats = obj.subcats;
 	this.desctiption - obj.desctiption;
 	
@@ -351,12 +351,13 @@ function Course(obj){
 
 	this.sections = [];
 	for(var s in obj.sections){
-		this.sections.push(new Section(obj.sections[s], this.color));
+		this.sections.push(new Section(obj.sections[s], this));
 	}
 }
 
-function Section(obj, color){
-	this.color = color;
+function Section(obj, course){
+	this.color = course.color;
+	this.course = course;
 
 	this.open = obj.open;
 	this.total = obj.total;
@@ -365,21 +366,32 @@ function Section(obj, color){
 	this.id =  obj.id;
 	this.professor = obj.professor;	
 
-	this.lecture = new ClassTime(obj.lecture, color);
+	this.lecture = new ClassTime(obj.lecture, this);
 
 	if('discussions' in obj){
 		this.discussions = [];
 		for(var d in obj.discussions){
-			this.discussions.push(new ClassTime(obj.discussions[d], color));
+			this.discussions.push(new ClassTime(obj.discussions[d], this));
 		}
 	}
 }
 
-function ClassTime(obj, color){
+function ClassTime(obj, section){
 	this.days = obj.days;
-	this.startTime = new Time(obj.startTime[0], obj.startTime[1]);
-	this.endTime = new Time(obj.endTime[0], obj.endTime[1]);
-	this.color = color;
+	this.startTime = new Time(obj.startTime);
+	this.endTime = new Time(obj.endTime);
+	this.color = section.color;
+	this.section = section;
+}
+
+function Time(minutes){
+
+	this.min = minutes % 60;
+	this.hour = (minutes - this.min) / 60;
+
+	this.toMinutes = function(){
+		return this.hour*60 + this.min;
+	};
 }
 
 function toggleDisplayed(idString){
@@ -398,6 +410,7 @@ function toggleDisplayed(idString){
 	repaint();
 }
 
+
 function getClassTimeByIdString(idString){
 	console.log(idString);
 
@@ -405,7 +418,6 @@ function getClassTimeByIdString(idString){
 	var split = idString.split('-');
 	var sectionID = split[1];
 	var courseID = split[2];
-
 
 	var lecture = false;
 	var disNumber = 0;
@@ -421,18 +433,14 @@ function getClassTimeByIdString(idString){
 
 			var course = prefix.courses[c];
 			if(course.id != courseID){
-				console.log ("continue: " + course.id + " != " + courseID);
 				continue;
 			}
 			
 			for (var s in course.sections){
 				var section = course.sections[s];
 				if(section.id != sectionID){
-					console.log ("continue: " + section.id + " != " + sectionID);
 					continue;
 				}
-
-				console.log("return something");
 				
 				if(lecture){
 					return section.lecture;
@@ -442,17 +450,4 @@ function getClassTimeByIdString(idString){
 			}
 		}
 	}
-
-	console.log("Found no ClassTime");
-
-}
-
-//Time class. Stores a time of day, percise to hours and minues
-function Time(hour, min){
-	this.hour = hour;
-	this.min = min;
-
-	this.toMinutes = function(){
-		return hour*60 + min;
-	};
 }

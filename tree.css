@@ -86,3 +86,12 @@ ol.tree
 .displayed{
 	background:green;
 }
+
+#treeDiv{
+	overflow: scroll;
+	width:270px;
+}
+
+#treeOl{
+	width:500px;
+}
