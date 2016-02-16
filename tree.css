@@ -90,6 +90,7 @@ ol.tree
 #treeDiv{
 	overflow: scroll;
 	width:270px;
+	height:700px;
 }
 
 #treeOl{
