@@ -251,7 +251,7 @@ var tree;
 $(document).ready(function(){
 
 	
-	$.getJSON("http://localhost:8000/thing2.json", function(data){
+	$.getJSON("thing2.json", function(data){
 		tree = new Tree(data);
 		generateTree(tree);
 	})
