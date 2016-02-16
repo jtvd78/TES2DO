@@ -23,7 +23,7 @@ img {
 }
 
 .displayed{
-  background:green;
+  background-color:green;
 }
 
 #treeDiv{
@@ -38,10 +38,9 @@ img {
   text-align: center;
 }
 
-/*
-Tree stuff below here
-*/
-
+/**
+ *Tree stuff below here
+ */
 p{
   font-size: 1em;
   margin: 0 0 1em 0;
@@ -64,7 +63,7 @@ li {
 }
 
 li.file{
-  background: url(treeImages/document.png) 0 0 no-repeat;
+  /*background: url(treeImages/document.png)0 0 no-repeat;*/
   padding-left: 21px;
   margin-left: -1px !important;
 }

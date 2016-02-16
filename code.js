@@ -62,10 +62,11 @@ function setDisplayTimeLine(display){
 
 //Called when the mouse is moved on the canvas
 function mouseMoved(event){
-	var offset = $("#scheduleCanvas").offset();
+	var canvas = document.getElementById("scheduleCanvas");
 
-	mouseX = event.clientX - offset.left;
-	mouseY = event.clientY - offset.top;
+	var rect = canvas.getBoundingClientRect();
+	mouseX = Math.round((event.clientX-rect.left)/(rect.right-rect.left)*canvas.width);
+	mouseY = Math.round((event.clientY-rect.top)/(rect.bottom-rect.top)*canvas.height);
 
 	repaint();
 }
