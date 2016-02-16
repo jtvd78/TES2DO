@@ -93,6 +93,7 @@ a img { border: none; }
   height:700px;
 	width:970px;
   border:5px solid white;
+  margin: auto; 
 }
 
 /**
@@ -106,7 +107,8 @@ a img { border: none; }
   }
 
   #header {
-    margin-right: 0;
+    margin-right: 55px;
+    margin-left: 60px;
     padding-left: 0;
     padding-right: 0;
     height: auto;

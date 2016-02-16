@@ -20,13 +20,13 @@ input, select, textarea, th, td { font-size: 1em; }
 	
 /* CSS Tree menu styles */
 ol.tree{
-	padding: 0 0 0 30px;
+	padding: 0 0 0 20px;
 	width: 300px;
 }
 
 li { 
 	position: relative; 
-	margin-left: -15px;
+	margin-left: -10px;
 	list-style: none;
 }
 
@@ -91,10 +91,21 @@ li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
 
 #treeDiv{
 	overflow: scroll;
-	width:270px;
+	width:260px;
 	height:700px;
+	padding-bottom: 
+}
+
+#treeHeader{
+	color: red;
+	text-align: center;
 }
 
 #treeOl{
-	width:500px;
+	width:400px;
+}
+
+#treeHeader{
+	color: red;
+	text-align: center;
 }
