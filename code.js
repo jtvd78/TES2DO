@@ -401,7 +401,7 @@ function toggleDisplayed(idString){
 
 	if($('#'+idString).hasClass("displayed")){
 		$('#'+idString).toggleClass("displayed hidden");
-		//classTimeList.rem
+		classTimeList.splice(classTimeList.indexOf(classTime),1);
 	}else{
 		$('#'+idString).toggleClass("displayed hidden");
 		classTimeList.push(classTime);
@@ -414,7 +414,6 @@ function toggleDisplayed(idString){
 function getClassTimeByIdString(idString){
 	console.log(idString);
 
-	//courseTime-' + section.id + '-' + course.id + '-lecture-li
 	var split = idString.split('-');
 	var sectionID = split[1];
 	var courseID = split[2];
