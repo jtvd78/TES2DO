@@ -26,6 +26,8 @@ public class MainServer {
             try {   
             	Schedule s = new Schedule();
 	    		s.addCourseById("MATH141");
+	    		s.addCourseById("CMSC132");
+	    		s.addCourseById("ENEE101");
 	    		String response = new Gson().toJson(s);
 	    	//	System.out.println(response);
 				

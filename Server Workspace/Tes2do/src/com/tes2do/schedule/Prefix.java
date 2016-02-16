@@ -13,7 +13,7 @@ public class Prefix {
 	
 	public Prefix(Element e){
 		
-		title = e.select(".course-prefix-info").text();
+		title = e.select(".course-prefix-name").text();
 		code =  e.select(".course-prefix-abbr").text();
 		Elements courseElements = e.select(".course");
 		
