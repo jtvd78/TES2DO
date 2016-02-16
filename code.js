@@ -18,7 +18,6 @@ var timeLineColor = "#FF0000";
 var backgroundColor = "#000000";
 //END SETTINGS
 
-
 //Current X and Y position of the mouse on the canvas
 var mouseX;
 var mouseY;
@@ -107,8 +106,7 @@ function repaint(){
 	//Draws the timeline if its corrosponding boolean is true
 	if(displayTimeLine){
 		drawTimeLine(context);
-	}
-	
+	}	
 }
 
 //Draws backgound
@@ -251,7 +249,7 @@ var tree;
 $(document).ready(function(){
 
 	
-	$.getJSON("thing2.json", function(data){
+	$.getJSON("TestData.json", function(data){
 		tree = new Tree(data);
 		generateTree(tree);
 	})
@@ -285,8 +283,6 @@ function generateTree(tree){
 			'<label for="course-' + course.id + '">' + course.id + " : " +course.name + '</label>' + 
 			'<input type="checkbox" id="course-' + course.id +'">' + 
 			'<ol id="course-' + course.id  + '-ol">');
-
-
 			
 			for (var s in course.sections){
 				var section = course.sections[s];
@@ -345,9 +341,7 @@ function Course(obj){
 	this.subcats = obj.subcats;
 	this.desctiption - obj.desctiption;
 	
-	this.color = getRandomColor();
-	console.log(this.color);
-	
+	this.color = getRandomColor();	
 
 	this.sections = [];
 	for(var s in obj.sections){
@@ -409,7 +403,6 @@ function toggleDisplayed(idString){
 	
 	repaint();
 }
-
 
 function getClassTimeByIdString(idString){
 	console.log(idString);

@@ -1,0 +1,237 @@
+
+/* Setting the font*/
+*, html {
+  font-family: Verdana, Arial, Helvetica, sans-serif; 
+}
+
+body, form, ul, li, p, h1, h2, h3, h4, h5
+{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background: #000 url(wrapper/body-bg-repeat.png) top left repeat-x;
+}
+
+img { border: none; }
+
+.displayed{
+  background:green;
+}
+
+#treeDiv{
+  overflow: scroll;
+  width:270px;
+  height:700px;
+  padding-bottom: 
+}
+
+#treeHeader{
+  color: red;
+  text-align: center;
+}
+
+#treeOl{
+  width:400px;
+}
+
+#treeHeader{
+  color: red;
+  text-align: center;
+}
+
+/*
+Tree stuff below here
+*/
+
+p{
+  font-size: 1em;
+  margin: 0 0 1em 0;
+}
+
+html { font-size: 100%; /* IE hack */ }
+body { font-size: 1em; /* Sets base font size to 16px */ }
+table { font-size: 100%; /* IE hack */ }
+input, select, textarea, th, td { font-size: 1em; }
+  
+/* CSS Tree menu styles */
+ol.tree{
+  padding: 0 0 0 20px;
+  width: 300px;
+}
+
+li { 
+  position: relative; 
+  margin-left: -10px;
+  list-style: none;
+}
+
+li.file{
+  margin-left: -1px !important;
+}
+
+li.file a{
+  background: url(treeImages/document.png) 0 0 no-repeat;
+  color: #fff;
+  padding-left: 21px;
+  text-decoration: none;
+  display: block;
+}
+
+li.file a[href *= '.pdf'] { background: url(treeImages/document.png) 0 0 no-repeat; }
+li.file a[href *= '.html']  { background: url(treeImages/document.png) 0 0 no-repeat; }
+li.file a[href $= '.css'] { background: url(treeImages/document.png) 0 0 no-repeat; }
+li.file a[href $= '.js']  { background: url(treeImages/document.png) 0 0 no-repeat; }
+
+li input{
+  position: absolute;
+  left: 0;
+  margin-left: 0;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+  top: 0;
+}
+
+li input + ol{
+  background: url(treeImages/toggle-small-expand.png) 40px 0 no-repeat;
+  margin: -0.938em 0 0 -44px; /* 15px */
+  height: 1em;
+}
+
+li input + ol > li { display: none; margin-left: -14px !important; padding-left: 1px; }
+
+li label{
+  background: url(treeImages/folder-horizontal.png) 15px 1px no-repeat;
+  cursor: pointer;
+  display: block;
+  padding-left: 37px;
+}
+
+li input:checked + ol
+{
+  background: url(treeImages/toggle-small.png) 40px 5px no-repeat;
+  margin: -1.25em 0 0 -44px; /* 20px */
+  padding: 1.563em 0 0 80px;
+  height: auto;
+}
+
+li input:checked + ol > li { display: block; margin: 0 0 0.125em;  /* 2px */}
+li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
+
+/**
+ * Wrapper stuff below here
+ */
+#wrapper {
+  background: transparent url(wrapper/body-bg-top.png) top left no-repeat;
+}
+
+/**
+ * Header container styles
+ */
+#header {
+  margin-right: 75px;
+  padding: 13px 11px 16px;
+  height: 37px;
+  position: relative;
+}
+
+#header #umd-logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#header #search-link {
+  position: absolute;
+  right: -59px;
+}
+
+#header #search {
+  float: right;
+  display: none;
+}
+
+#header #search .text {
+  background: transparent url(wrapper/search-text.png) top left no-repeat;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#header #search input[type=text] {
+  margin: 0;
+  padding: 0 10px;
+  border: none;
+  width: 166px;
+  height: 27px;
+  line-height: 27px;
+  color: #898989;
+  background-color: transparent
+}
+
+#header #search input[type=submit] {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 74px;
+  height: 27px;
+  background: transparent url(wrapper/search-submit.png) 0 0 no-repeat;
+  text-indent: -9999px;
+  outline: none;
+}
+
+#header #search input[type=submit]:hover { background-position: 0 -27px; }
+#header #search input[type=submit]:active { background-position: 0 -54px; }
+
+#header #search .site_search {
+  margin-top: 5px;
+  font-size: 11px;
+  text-align: right;
+  color: #fff;
+}
+
+/**
+ * Main container
+ */
+#main {
+  background-color: #FFF;
+	width:970px;
+  border:5px solid white;
+  margin: auto; 
+}
+
+/**
+ * Responsive
+ */
+@media all and (min-width: 768px) {
+  #wrapper {
+    margin: 0px auto;
+    width: 728px;
+  }
+
+  #header {
+    margin-right: 55px;
+    margin-left: 60px;
+    padding-left: 0;
+    padding-right: 0;
+    height: auto;
+  }
+
+  #header #search { display: block; }
+  #header #search-link { display: none; }
+
+}
+
+@media all and (min-width: 980px) {
+  #wrapper {
+    width: 940px;
+  }
+}
+
+@media all and (min-width: 1134px) {
+  #wrapper {
+    width: 1094px;
+  }
+}
