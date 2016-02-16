@@ -90,7 +90,7 @@ li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
 }
 
 #treeDiv{
-	overflow: scroll;
+	overflow: auto;
 	width:260px;
 	height:700px;
 	padding-bottom: 
