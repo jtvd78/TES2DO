@@ -250,10 +250,18 @@ var tree;
 
 $(document).ready(function(){
 
+	
 	$.getJSON("http://localhost:8000/thing.json", function(data){
 		tree = new Tree(data);
 		generateTree(tree);
 	})
+	
+	/*
+	$.getJSON("http://localhost:8001/test/", function(data){
+		tree = new Tree(data);
+		generateTree(tree);
+	})
+	*/
 });		
 
 function generateTree(tree){
@@ -274,7 +282,7 @@ function generateTree(tree){
 			var course = prefix.courses[c];
 			$('#prefix-' + prefix.code + '-ol').append(
 			'<li  id="course-' + course.id + '-li">' + 
-			'<label for="course-' + course.id + '">' + course.id + " : " +course.title + '</label>' + 
+			'<label for="course-' + course.id + '">' + course.id + " : " +course.name + '</label>' + 
 			'<input type="checkbox" id="course-' + course.id +'">' + 
 			'<ol id="course-' + course.id  + '-ol">');
 
@@ -331,48 +339,53 @@ function Prefix(obj){
 }
 
 function Course(obj){
-	this.title = obj.title;
 	this.id = obj.id;
-	this.sections = [];
+	this.name = obj.name;	
+//	this.credits = credits;
+	this.subcats = obj.subcats;
+	this.desctiption - obj.desctiption;
+	
 	this.color = getRandomColor();
-
 	console.log(this.color);
+	
 
+	this.sections = [];
 	for(var s in obj.sections){
-		this.sections.push(new Section(obj.sections[s], this));
+		this.sections.push(new Section(obj.sections[s], this.color));
 	}
 }
 
-function Section(obj, course){
+function Section(obj, color){
+	this.color = color;
+
+	this.open = obj.open;
+	this.total = obj.total;
+	this.waitlist = obj.waitlist;
+
 	this.id =  obj.id;
-	this.professor = obj.professor;
-	this.color = course.color;
-	this.lecture = new ClassTime(obj.lecture, this);
-	this.course = course;
+	this.professor = obj.professor;	
+
+	this.lecture = new ClassTime(obj.lecture, color);
+
 	if('discussions' in obj){
 		this.discussions = [];
 		for(var d in obj.discussions){
-			this.discussions.push(new ClassTime(obj.discussions[d], this));
+			this.discussions.push(new ClassTime(obj.discussions[d], color));
 		}
 	}
 }
 
-function ClassTime(obj, section){
+function ClassTime(obj, color){
 	this.days = obj.days;
 	this.startTime = new Time(obj.startTime[0], obj.startTime[1]);
 	this.endTime = new Time(obj.endTime[0], obj.endTime[1]);
-	this.color = section.color;
-	this.section = section;
+	this.color = color;
 }
 
 function toggleDisplayed(idString){
 
-	console.log(idString);
-
 	//Check if item is a classTime
 	var classTime = getClassTimeByIdString(idString);
-
-	console.log(classTime);
 
 	if($('#'+idString).hasClass("displayed")){
 		$('#'+idString).toggleClass("displayed hidden");
@@ -399,12 +412,8 @@ function getClassTimeByIdString(idString){
 	if(split[3] == 'lecture'){
 		lecture = true;
 	}else{
-		console.log(split[3]);
 		disNumber = split[3].split("dis")[1];
-		console.log(disNumber);
 	}
-
-	console.log(sectionID + " : " + courseID + " : " + lecture + " : " + disNumber);
 
 	for(var p in tree.prefixes){
 		var prefix = tree.prefixes[p];

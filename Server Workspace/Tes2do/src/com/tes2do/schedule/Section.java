@@ -5,11 +5,11 @@ import org.jsoup.select.Elements;
 
 public class Section{
 	
-	private int openSeats;
-	private int totalSeats;	
-	private int waitlistSize;
+	private int open;
+	private int total;	
+	private int waitlist;
 	
-	private String sectionID;
+	private String id;
 	private String professor;
 	
 	private ClassTime lecture;
@@ -17,12 +17,12 @@ public class Section{
 	
 	public Section(Element e){
 		
-		sectionID = e.select(".section-id-container").text();
+		id = e.select(".section-id-container").text();
 		professor = e.select(".section-instructor").text();
 		
-		openSeats = Integer.parseInt(e.select(".open-seats-count").text());
-		totalSeats = Integer.parseInt(e.select(".total-seats-count").text());
-		waitlistSize = Integer.parseInt(e.select(".waitlist-count").get(0).text());		
+		open = Integer.parseInt(e.select(".open-seats-count").text());
+		total = Integer.parseInt(e.select(".total-seats-count").text());
+		waitlist = Integer.parseInt(e.select(".waitlist-count").get(0).text());		
 		
 		//times
 		Elements times = e.select(".class-days-container").select(".row");		
@@ -49,11 +49,11 @@ public class Section{
 	}
 	
 	public int getOpenSeats(){
-		return openSeats;
+		return open;
 	}
 	
 	public String toString(){
-		return sectionID + " : " + professor + " : " + lecture + " - " + "Total: " + totalSeats + " Open: " + openSeats + " WL: " + waitlistSize;
+		return id + " : " + professor + " : " + lecture + " - " + "Total: " + total + " Open: " + open + " WL: " + waitlist;
 	}
 	
 	public ClassTime getLecture(){
@@ -65,6 +65,6 @@ public class Section{
 	}
 	
 	public String getSectionID(){
-		return sectionID;
+		return id;
 	}
 }

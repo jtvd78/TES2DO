@@ -13,35 +13,35 @@ import com.tes2do.helper.URLMaker;
 
 public class Course{
 	
+	String id;
+	String name;
 	int credits;
-	String courseID;
-	String courseName;
 	String description;
 	GenEdSubcat[] subCats;
 	ArrayList<Section> sections = new ArrayList<Section>();
 	
 	public Course(Element e){
-		courseID = e.attr("id");
+		id = e.attr("id");
 		subCats = getSubCats(e);
 		initSections();
-		courseName = e.select(".course-title").text();
+		name = e.select(".course-title").text();
 		description = e.select(".approved-course-text").text();
 		credits = Integer.parseInt(e.select(".course-min-credits").text());		
 	}
 	
 	public String getDescription(){
-		return courseID + ": " + courseName + "\nGen Ed Subcategories: " +
+		return id + ": " + name + "\nGen Ed Subcategories: " +
 				Tools.arrToString(subCats, ",") + "\nCredits: " +
 				credits + "\nDescription: " + description;
 	}
 	
 	public String getName(){
-		return courseName;
+		return name;
 	}
 	
 	public boolean equalsCourse(Course course){		
 		//Two courses are equal if they have the same ID
-		if(courseID.equals(course.getCourseID())){
+		if(id.equals(course.getCourseID())){
 			return true;
 		}else{
 			return false;
@@ -67,7 +67,7 @@ public class Course{
 	}
 	
 	public String toString(){
-		return courseID + ": " + Tools.arrToString(subCats, ",") + " : " + courseName;
+		return id + ": " + Tools.arrToString(subCats, ",") + " : " + name;
 	}
 	
 	public GenEdSubcat[] getSubCats(){
@@ -78,12 +78,12 @@ public class Course{
 	 * @return String representing courseID
 	 */
 	public String getCourseID(){
-		return courseID;
+		return id;
 	}
 	
 	private void initSections(){		
 		try {
-			Document times = Jsoup.connect(URLMaker.getCourseTimeURL(courseID)).get();
+			Document times = Jsoup.connect(URLMaker.getCourseTimeURL(id)).get();
 			Elements sectionElements = times.select(".section");
 			
 			

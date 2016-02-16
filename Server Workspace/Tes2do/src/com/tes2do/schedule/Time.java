@@ -17,8 +17,6 @@ public class Time{
 	public enum Day{
 		M, Tu, W, Th, F
 	}
-	
-	
 
 	int hour;
 	int min;
@@ -46,8 +44,7 @@ public class Time{
 		hour = minutes / 60;
 		
 		PM = (hour >= 12);
-	}
-	
+	}	
 
 	/**
 	 * Creates a time from a string. The string must be in the specific format from the UMD Soc Website, or this will not work
@@ -110,7 +107,6 @@ public class Time{
 	//I don't like this being here. That's why its not documented
 	public static int[] getDays(String daysString){
 		
-		
 		ArrayList<Integer> daysList = new ArrayList<Integer>();
 		
 		for(int i = 0; i < Day.values().length; i++){
@@ -118,6 +114,7 @@ public class Time{
 				daysList.add(i);
 			}
 		}
+		
 		int[] out = new int[daysList.size()];
 		for(int i = 0; i < daysList.size(); i++){
 			out[i] = daysList.get(i);
