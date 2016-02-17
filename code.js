@@ -331,7 +331,7 @@ function generateTree(tree){
 				//lecture
 				$('#section-' + section.id + '-'+ course.id +'-ol').append(
 					'<li id="courseTime-' + section.id + '-' + course.id + '-lecture-li" class="file classTime hidden">' +
-					"Lecture</li>"
+					"Lecture: (" + minToString(section.lecture.startTime.toMinutes())+" - "+  minToString(section.lecture.endTime.toMinutes())+")</li>"
 
 					);
 
@@ -340,7 +340,7 @@ function generateTree(tree){
 					var discussion = section.discussions[d];
 					$('#section-' + section.id + '-'+ course.id +'-ol').append(
 					'<li id="courseTime-' + section.id + '-' + course.id + '-dis' + d + '-li" class="file classTime hidden">' +
-					"Dicussion" + d + "</li>"
+					"Dicussion " + d + ": (" + minToString(discussion.startTime.toMinutes())+" - "+  minToString(discussion.endTime.toMinutes())+")</li>"
 					);
 				}
 			}

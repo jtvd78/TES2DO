@@ -30,7 +30,6 @@ img {
   overflow: auto;
   width:270px;
   height:700px;
-  padding-bottom: 
 }
 
 #treeHeader{
@@ -49,11 +48,11 @@ p{
 /* CSS Tree menu styles */
 ol.tree{
   padding: 0 0 0 25px;
+  white-space: nowrap;
 }
 
 ol.tree label{
   display:inline-block;
-  white-space: nowrap;
 }
 
 li { 
@@ -63,8 +62,8 @@ li {
 }
 
 li.file{
-  /*background: url(treeImages/document.png)0 0 no-repeat;*/
-  padding-left: 21px;
+  /*background: url(treeImages/document.png)0 0 no-repeat;
+  padding-left: 21px;*/
   margin-left: -1px !important;
 }
 
@@ -183,9 +182,8 @@ li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
   min-height: 300px;
   background-color: #FFF;
 	width:970px;
-  border:5px solid white;
   margin: auto; 
-  padding: 5px;
+  padding: 10px;
 }
 
 /**
