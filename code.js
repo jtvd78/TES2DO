@@ -13,7 +13,7 @@ var endHour = 7 + 12;
 var daysOfWeek = 5;			
 
 //Color settings
-var gridColor = "#FFFFFF";
+var gridColor = "#888888";
 var timeLineColor = "#FF0000";
 var backgroundColor = "#000000";
 //END SETTINGS
@@ -77,6 +77,27 @@ function updateVariables(){
 	width = canvas.width;
 	height = canvas.height;
 	dayWidth = width / daysOfWeek;
+	
+
+	var maxTime = 0;
+	var minTime = 24*60;
+
+	//Set bounds of schedule
+	for(var c in classTimeList){
+		var ct = classTimeList[c];
+
+		if(ct.startTime.toMinutes() < minTime){
+			minTime = ct.startTime.toMinutes();
+		}
+
+		if(ct.endTime.toMinutes() > maxTime){
+			maxTime = ct.endTime.toMinutes();
+		}
+	}
+
+	startHour = minTime/60-2;
+	endHour = maxTime/60+2;
+
 	minPerPixelY = (endHour - startHour)*60/height;
 }
 
@@ -119,6 +140,7 @@ function drawBackground(context){
 //Draws grid
 function drawGrid(context){
 	context.strokeStyle = gridColor;
+	context.lineWidth = 1;
 
 	//Vertical
 	for(i = 1; i < daysOfWeek;  i++){
@@ -142,6 +164,8 @@ function drawGrid(context){
 //Draws a classtime
 function drawClassTime(classTime, context){
 
+	context.lineWidth = 2;
+
 	//Loops through the days
 	for(dayCtr = 0; dayCtr < classTime.days.length; dayCtr++){
 
@@ -162,6 +186,17 @@ function drawClassTime(classTime, context){
 		//Draws classtime box
 		context.fillStyle = classTime.color;
 		context.fillRect(ctX, ctY, ctWidth, ctHeight);
+
+		//Draws discussion/lecture outline
+		if(classTime.lecture){
+			context.strokeStyle = "#00FF00";
+		}else{
+			context.strokeStyle = "#FF0000";
+		}
+		
+		context.beginPath();
+		context.rect(ctX + 1, ctY + 1, ctWidth - 2, ctHeight - 2);
+		context.stroke();
 
 		//Draws classtime text
 		context.fillStyle = "#000000";
@@ -233,7 +268,7 @@ function minToString(min){
 		out+="0";
 	}
 
-	out += Math.round(newMin);
+	out += Math.floor(newMin);
 
 	if(pm > 0){
 		out += " PM";
@@ -361,22 +396,23 @@ function Section(obj, course){
 	this.id =  obj.id;
 	this.professor = obj.professor;	
 
-	this.lecture = new ClassTime(obj.lecture, this);
+	this.lecture = new ClassTime(obj.lecture, true, this);
 
 	if('discussions' in obj){
 		this.discussions = [];
 		for(var d in obj.discussions){
-			this.discussions.push(new ClassTime(obj.discussions[d], this));
+			this.discussions.push(new ClassTime(obj.discussions[d], false, this));
 		}
 	}
 }
 
-function ClassTime(obj, section){
+function ClassTime(obj, lecture, section){
 	this.days = obj.days;
 	this.startTime = new Time(obj.startTime);
 	this.endTime = new Time(obj.endTime);
 	this.color = section.color;
 	this.section = section;
+	this.lecture = lecture;
 }
 
 function Time(minutes){
