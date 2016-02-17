@@ -47,25 +47,14 @@ p{
   
 /* CSS Tree menu styles */
 ol.tree{
-  padding: 0 0 0 25px;
+  padding: 0 0 0 10px;
   white-space: nowrap;
   display: inline-block;
 }
 
-ol.tree label{
-  display:inline-block;
-}
-
 li { 
-  position: relative; 
-  margin-left: -15px;
+  position: relative;
   list-style: none;
-}
-
-li.file{
-  /*background: url(treeImages/document.png)0 0 no-repeat;
-  padding-left: 21px;*/
-  margin-left: -1px !important;
 }
 
 li label{
@@ -93,18 +82,25 @@ li input + ol{
   height: 1em;
 }
 
-li input + ol > li { display: none; margin-left: -14px !important; padding-left: 1px; }
+li input + ol > li {
+  display: none;
+}
 
-li input:checked + ol
-{
+li input:checked + ol{
   background: url(treeImages/toggle-small.png) 0px 0px no-repeat;
   margin: -1.25em 0 0 -4px;
-  padding: 1.563em 0 0 34px;
+  padding: 1.563em 0 0 20px;
   height: auto;
 }
 
-li input:checked + ol > li { display: block; margin: 0 0 0.125em;  /* 2px */}
-li input:checked + ol > li:last-child { margin: 0 0 0.063em; /* 1px */ }
+li input:checked + ol > li:last-child { 
+  margin: 0 0 0.063em; /* 1px */ 
+}
+
+li input:checked + ol > li {
+  display: block;
+  margin: 0 0 0.125em;  /* 2px */
+}
 
 /**
  * Wrapper stuff below here
