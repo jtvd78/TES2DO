@@ -162,6 +162,12 @@ li input:checked + ol > li {
   vertical-align: top;
 }
 
+#colorKey{
+  display:inline-block;
+  font-size: 10.5pt;
+  padding-left: 10px;
+  height: 12px;
+} 
 #header #search input[type=text] {
   margin: 0;
   padding: 0 10px;
