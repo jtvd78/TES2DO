@@ -33,6 +33,7 @@ img {
 }
 
 #treeHeader{
+  font-size: 12pt;
   color: red;
   text-align: center;
 }
@@ -114,6 +115,29 @@ li input:checked + ol > li {
   padding: 13px 11px 16px;
   height: 37px;
   position: relative;
+}
+.day > div {
+  font-weight: bold;
+  font-size: 12pt;
+  display: inline-block;
+  display: -moz-inline-box;
+  *display: inline; /* For IE7 */
+  zoom: 1; /* Trigger hasLayout */
+  width: 14.5%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.buttons > div {
+  font-weight: bold;
+  font-size: 12pt;
+  display: inline-block;
+  display: -moz-inline-box;
+  *display: inline; /* For IE7 */
+  zoom: 1; /* Trigger hasLayout */
+  width: 25%;
+  text-align: center;
+  padding: 0px;
 }
 
 #header #umd-logo img {
