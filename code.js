@@ -343,8 +343,6 @@ function toggleDisplayed(element){
 	var parentElement = $('#' + idString);
 	var children = parentElement.children();
 	
-	console.log(children);
-
 	if(parentElement.hasClass("open")){
 		parentElement.toggleClass("open closed");
 
