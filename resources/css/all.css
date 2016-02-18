@@ -25,21 +25,28 @@ img {
   background-color:green;
 }
 
-#treeDiv{
-  overflow: auto;
-  width:270px;
-  height:700px;
-}
 
-#treeHeader{
-  font-size: 12pt;
-  color: red;
-  text-align: center;
-}
 
 /**
  *Tree stuff below here
  */
+ #treeDiv{
+  overflow: auto;
+  width:300px;
+  height:700px;
+}
+
+#treeHeader{
+  font-family: verdana;
+  font-size: 12pt;
+  color: red;
+  text-align: center;
+  display: inline-block;
+  width: 0%;
+  text-align: center;
+
+}
+
 p{
   font-size: 1em;
   margin: 0 0 1em 0;
@@ -160,6 +167,6 @@ li input:checked + ol > li {
   display: -moz-inline-box;
   *display: inline; /* For IE7 */
   zoom: 1; /* Trigger hasLayout */
-  width: 14.5%;
+  width: 14%;
   text-align: center;
 }
