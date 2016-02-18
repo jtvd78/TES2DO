@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en-us">
-
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
@@ -13,25 +11,24 @@
         <link rel="stylesheet" href="/resources/css/all.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="code.js"></script>
-
         <script>
             $(document).ready(function() {
                 var tabHoverInHandler = function(event) {
                     $(this).siblings('.selected-tab, .hover-tab').removeClass('hover-tab');
                     $(this).addClass('hover-tab');
                 };
-
+            
                 var tabHoverOutHandler = function(event) {
-
+            
                     if ((!$(this).hasClass('selected-tab')) && (event.toElement != this.parentElement)) {
                         $(this).removeClass('hover-tab');
                         $(this).siblings('.selected-tab').addClass('hover-tab');
                     }
-
+            
                 };
-
+            
                 $('ul#site-menu li').hover(tabHoverInHandler, tabHoverOutHandler);
-
+            
                 $('ul#site-menu').hover(function(event) {}, function(event) {
                     $(this).children().removeClass('hover-tab');
                     $(this).children('.selected-tab').addClass('hover-tab');
@@ -39,7 +36,6 @@
             });
         </script>
     </head>
-
     <body>
         <div id="umd-frame-wrapper" class="container">
             <div id="umd-frame">
@@ -54,21 +50,21 @@
                         <div id="title-bar" class="row">
                             <div id="mobile-umd-logo">
                                 <a href="http://www.umd.edu/" target="_blank">
-                                    <img src="resources/images/umd-informal-seal.png">
+                                <img src="resources/images/umd-informal-seal.png">
                                 </a>
                             </div>
                             <div id="app-title">
                                 <a href="index.html">
-                                    <span id="app-title-text">
-    								TES2DO class REGISTRATION
-    								</span>
+                                <span id="app-title-text">
+                                TES2DO class REGISTRATION
+                                </span>
                                 </a>
                             </div>
                             <div id="department-title">
                                 <a href="http://www.registrar.umd.edu/" target="_blank">
-                                    <span id="department-title-text">
-    								OFFICE of the REGISTRAR
-    								</span>
+                                <span id="department-title-text">
+                                OFFICE of the REGISTRAR
+                                </span>
                                 </a>
                             </div>
                         </div>
@@ -81,28 +77,28 @@
                                         <ul id="site-menu" class="clearfix">
                                             <li class="selected-tab hover-tab">
                                                 <a href="index.html">
-    												MySchedule
-    												</a>
+                                                MySchedule
+                                                </a>
                                             </li>
                                             <li class="">
                                                 <a href="gen-ed/index.html">
-    												Maps
-    												</a>
+                                                Maps
+                                                </a>
                                             </li>
                                             <li class="">
                                                 <a href="core/index.html">
-    												4-Year Plan
-    												</a>
+                                                4-Year Plan
+                                                </a>
                                             </li>
                                             <li class="">
                                                 <a href="saved/index.html" id="my-saved-list-menu-item">
-    												Book List
-    												</a>
+                                                Book List
+                                                </a>
                                             </li>
                                             <li class="">
                                                 <a href="exam/index.html" id="exam-menu-item">
-    												Final Exams
-    												</a>
+                                                Final Exams
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -117,10 +113,10 @@
                                     <div id="right-parallelogram"></div>
                                     <div id="site-menu-container">
                                         <span id="site-menu-button">
-    										<a class="site-menu-button-link" href="#">
-    										<img src="resources/images/menu-button.png" />
-    										</a>
-    										</span>
+                                        <a class="site-menu-button-link" href="#">
+                                        <img src="resources/images/menu-button.png" />
+                                        </a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -134,8 +130,7 @@
                             </div>
                         </div>
                         <div id="page-overlay"></div>
-
-    					<!-- MAIN -->
+                        <!-- MAIN -->
                         <div id="main">
                             <div class="day" style="color: red">
                                 <div>M</div>
@@ -143,8 +138,9 @@
                                 <div>W</div>
                                 <div>Th</div>
                                 <div>F</div>
-                                <div></div><h3 id="treeHeader"><b><u>Classes:</u></b></h3><div></div>
-
+                                <div></div>
+                                <h3 id="treeHeader"><b><u>Classes:</u></b></h3>
+                                <div></div>
                             </div>
                             <div style="">
                                 <canvas id="scheduleCanvas" width="700" height="700" style="display:inline-block"></canvas>
@@ -157,8 +153,7 @@
                             </div>
                         </div>
                     </div>
-    					<!-- END OF MAIN -->
-
+                    <!-- END OF MAIN -->
                     <div id="footer-wrapper">
                         <div id="footer" class="container sixteen colgrid">
                             <div id="footer-inner" class="row">
@@ -174,7 +169,7 @@
                                 </div>
                                 <div id="umd-terrapin-shell" class="two columns">
                                     <a href="http://www.feartheturtle.umd.edu/" target="_blank">
-                                        <img src="resources/images/terrapin-shell.png" />
+                                    <img src="resources/images/terrapin-shell.png" />
                                     </a>
                                 </div>
                                 <div id="umd-other-info" class="seven columns">
@@ -182,11 +177,11 @@
                                     <span id="umd-copyright">&copy; 2016 University of Maryland</span>
                                     <span id="umd-copyright-separator"> / </span>
                                     <span id="umd-privacy-link">
-    									<a href="http://www.nethics.umd.edu/dive-in/privacy.html" target="_blank">Privacy</a>
-    									</span>
+                                    <a href="http://www.nethics.umd.edu/dive-in/privacy.html" target="_blank">Privacy</a>
+                                    </span>
                                     <span id="umd-contact-info">
-    									<a href="mailto:webmaster@testudo.umd.edu">Contact us</a>
-    									<span id="umd-contact-rest">with comments, questions and feedback</span>
+                                    <a href="mailto:webmaster@testudo.umd.edu">Contact us</a>
+                                    <span id="umd-contact-rest">with comments, questions and feedback</span>
                                     <span id="umd-contact-separator">/&nbsp;</span>
                                     </span>
                                 </div>
