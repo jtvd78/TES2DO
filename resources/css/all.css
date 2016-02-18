@@ -28,7 +28,6 @@ img {
 
 #treeDiv{
   overflow: auto;
-  width:270px;
   height:700px;
 }
 
@@ -78,8 +77,8 @@ li input{
 }
 
 li input + ol{
-  background: url(../images/toggle-small-expand.png) 0px 0px no-repeat;
-  margin: -1.25em 0 .5em -4px;
+  background: url(../images/toggle-small-expand.png) 0px -3px no-repeat;
+  margin: -1.5em 0 .5em -4px;
   height: 1em;
 }
 
@@ -88,8 +87,8 @@ li input + ol > li {
 }
 
 li input:checked + ol{
-  background: url(../images/toggle-small.png) 0px 0px no-repeat;
-  margin: -1.25em 0 0 -4px;
+  background: url(../images/toggle-small.png) 0px -3px no-repeat;
+  margin: -1.5em 0 0 -4px;
   padding: 1.563em 0 0 20px;
   height: auto;
 }
@@ -106,16 +105,7 @@ li input:checked + ol > li {
 /**
  * Wrapper stuff below here
  */
-#wrapper {
-  background: transparent url(../images/body-bg-top.png) top left no-repeat;
-}
 
-#header {
-  margin-right: 75px;
-  padding: 13px 11px 16px;
-  height: 37px;
-  position: relative;
-}
 .day > div {
   font-weight: bold;
   font-size: 12pt;
@@ -125,25 +115,6 @@ li input:checked + ol > li {
   zoom: 1; /* Trigger hasLayout */
   width: 14.5%;
   text-align: center;
-}
-
-.buttons > div {
-  font-weight: bold;
-  font-size: 12pt;
-  display: inline-block;
-  display: -moz-inline-box;
-  *display: inline; /* For IE7 */
-  zoom: 1; /* Trigger hasLayout */
-  width: 25%;
-  text-align: center;
-  padding: 0px;
-}
-
-#header #umd-logo img {
-  width: 28%;
-  height: 28%;
-  max-width: 100%;
-  max-height: 100%;
 }
 
 #header #search-link {
@@ -168,6 +139,7 @@ li input:checked + ol > li {
   padding-left: 10px;
   height: 12px;
 } 
+
 #header #search input[type=text] {
   margin: 0;
   padding: 0 10px;
@@ -201,47 +173,11 @@ li input:checked + ol > li {
 }
 
 /**
- * Main container
- */
-#main {
-  border-radius: 15px;
-  min-height: 300px;
-  background-color: #FFF;
-	width:970px;
-  margin: auto; 
-  padding: 10px;
-}
-
-/**
  * Responsive
  */
 @media all and (min-width: 768px) {
-  #wrapper {
-    margin: 0px auto;
-    width: 728px;
-  }
-
-  #header {
-    margin-right: 55px;
-    margin-left: 60px;
-    padding-left: 0;
-    padding-right: 0;
-    height: auto;
-  }
 
   #header #search { display: block; }
   #header #search-link { display: none; }
 
-}
-
-@media all and (min-width: 980px) {
-  #wrapper {
-    width: 940px;
-  }
-}
-
-@media all and (min-width: 1134px) {
-  #wrapper {
-    width: 1094px;
-  }
 }
