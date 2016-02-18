@@ -13,16 +13,16 @@
 ================================================== */
 
 html, body, #umd-frame-wrapper {
-	height: 100%;
+	height: 80%;
 }
 
 #umd-frame-wrapper {
-	margin: 0 auto;
+	margin: 50px auto;
 }
 
 #umd-frame {
 	position: relative;
-	padding: 0;
+	padding-bottom: 0px;
 	text-align: left;
 	min-height: 100%;
 	height: auto !important;
@@ -140,6 +140,7 @@ div#footer {
 	div#mobile-umd-logo {
 		display: block;
 		float: left;
+
 	}
 	
 	div#mobile-umd-logo a {
@@ -311,7 +312,7 @@ div#footer {
 	#umd-frame-wrapper {
 		min-width: 960px;
 		max-width: 1140px;
-		margin-bottom: -87px;
+		margin-bottom: 0px;
 	}
 	
 	/* header */

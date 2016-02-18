@@ -106,16 +106,6 @@ li input:checked + ol > li {
 /**
  * Wrapper stuff below here
  */
-#wrapper {
-  background: transparent url(../images/body-bg-top.png) top left no-repeat;
-}
-
-#header {
-  margin-right: 75px;
-  padding: 13px 11px 16px;
-  height: 37px;
-  position: relative;
-}
 .day > div {
   font-weight: bold;
   font-size: 12pt;
@@ -139,66 +129,12 @@ li input:checked + ol > li {
   padding: 0px;
 }
 
-#header #umd-logo img {
-  width: 28%;
-  height: 28%;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-#header #search-link {
-  position: absolute;
-  right: -59px;
-}
-
-#header #search {
-  float: right;
-  display: none;
-}
-
-#header #search .text {
-  background: transparent url(../images/search-text.png) top left no-repeat;
-  display: inline-block;
-  vertical-align: top;
-}
-
 #colorKey{
   display:inline-block;
   font-size: 10.5pt;
   padding-left: 10px;
   height: 12px;
 } 
-#header #search input[type=text] {
-  margin: 0;
-  padding: 0 10px;
-  border: none;
-  width: 166px;
-  height: 27px;
-  line-height: 27px;
-  color: #898989;
-  background-color: transparent
-}
-
-#header #search input[type=submit] {
-  margin: 0;
-  padding: 0;
-  border: none;
-  width: 74px;
-  height: 27px;
-  background: transparent url(../images/search-submit.png) 0 0 no-repeat;
-  text-indent: -9999px;
-  outline: none;
-}
-
-#header #search input[type=submit]:hover { background-position: 0 -27px; }
-#header #search input[type=submit]:active { background-position: 0 -54px; }
-
-#header #search .site_search {
-  margin-top: 5px;
-  font-size: 11px;
-  text-align: right;
-  color: #fff;
-}
 
 /**
  * Main container
