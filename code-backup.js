@@ -34,8 +34,8 @@ var width, height;
 //Displays the timeline when true. This gets toggled when the mouse enters and exits the canvas
 var displayTimeLine = true;
 
-//List of Sections being displayed
-var sectionList = [];
+//List of ClassTimes being displayed
+var classTimeList = [];
 
 //Kind of like a main method
 $( document ).ready(function() {
@@ -83,21 +83,15 @@ function updateVariables(){
 	var minTime = 24*60;
 
 	//Set bounds of schedule
-	for(var s in sectionList){
-		var section = sectionList[s];
-		var classTimes = section.getClassTimes();
+	for(var c in classTimeList){
+		var ct = classTimeList[c];
 
+		if(ct.startTime.toMinutes() < minTime){
+			minTime = ct.startTime.toMinutes();
+		}
 
-		for(ct in classTimes){
-			var classTime = classTimes[ct];
-
-			if(classTime.startTime.toMinutes() < minTime){
-				minTime = classTime.startTime.toMinutes();
-			}
-
-			if(classTime.endTime.toMinutes() > maxTime){
-				maxTime = classTime.endTime.toMinutes();
-			}
+		if(ct.endTime.toMinutes() > maxTime){
+			maxTime = ct.endTime.toMinutes();
 		}
 	}
 
@@ -125,14 +119,10 @@ function repaint(){
 	drawBackground(context);
 	drawGrid(context);
 
-	//Draws each classtime in the list of courses
-	for(var s in sectionList){
-		var section = sectionList[s];
-		var classTimes = section.getClassTimes();
-
-		for(ct in classTimes){
-			drawClassTime(classTimes[ct], context);		
-		}
+	//Draws each classtime in the list of classtimes
+	for(c = 0; c < classTimeList.length; c++){
+		ct = classTimeList[c];
+		drawClassTime(ct, context);				
 	}
 
 	//Draws the timeline if its corrosponding boolean is true
@@ -235,7 +225,7 @@ function drawTimeLine(context){
 	
 
 	//Gets the time string, and draws it
-	var timeString = new Time(pxToMin(mouseY)).toString();
+	var timeString = minToString(pxToMin(mouseY));
 	context.fillText(timeString, mouseX,mouseY - fontSize/2);
 
 	//Draws the horizonal line
@@ -260,7 +250,34 @@ function pxToMin(px){
 	return startHour*60 + (px/height)*((endHour - startHour)*60)
 }
 
+//Converts minutes to a time string
+function minToString(min){
 
+	var newMin = min % 60;
+	var hour = (min - newMin) / 60;
+	var pm = Math.floor(hour / 12);
+	hour -= pm*12;
+
+	if(hour == 0){
+		hour = 12;
+	}
+
+	var out = hour + ":" 
+
+	if(newMin < 10){
+		out+="0";
+	}
+
+	out += Math.floor(newMin);
+
+	if(pm > 0){
+		out += " PM";
+	}else{
+		out += " AM";
+	}
+
+	return out;
+}
 
 ////
 var tree;
@@ -309,12 +326,12 @@ function generateTree(tree){
 				'<li  id="section-' + section.id + '-'+ course.id + '-li">' + 
 				'<label for="section-' + section.id + '-'+ course.id + '">' + section.id + " : " + section.professor + '</label>' + 
 				'<input type="checkbox" id="section-' + section.id + '-'+ course.id +'">' + 
-				'<ol id="section-' + section.id + '-'+ course.id +'-ol" class="closed">');
+				'<ol id="section-' + section.id + '-'+ course.id +'-ol">');
 
 				//lecture
 				$('#section-' + section.id + '-'+ course.id +'-ol').append(
 					'<li id="courseTime-' + section.id + '-' + course.id + '-lecture-li" class="file classTime hidden">' +
-					"Lecture: (" + section.lecture.startTime.toString() +" - "+  section.lecture.endTime.toString()+")</li>"
+					"Lecture: (" + minToString(section.lecture.startTime.toMinutes())+" - "+  minToString(section.lecture.endTime.toMinutes())+")</li>"
 
 					);
 
@@ -323,7 +340,7 @@ function generateTree(tree){
 					var discussion = section.discussions[d];
 					$('#section-' + section.id + '-'+ course.id +'-ol').append(
 					'<li id="courseTime-' + section.id + '-' + course.id + '-dis' + d + '-li" class="file classTime hidden">' +
-					"Dicussion " + d + ": (" + discussion.startTime.toString() +" - "+   discussion.endTime.toString()+")</li>"
+					"Dicussion " + d + ": (" + minToString(discussion.startTime.toMinutes())+" - "+  minToString(discussion.endTime.toMinutes())+")</li>"
 					);
 				}
 			}
@@ -331,43 +348,8 @@ function generateTree(tree){
 	}
 
 	$(".classTime").click(function(event){
-		toggleDisplayed(event.target);
+		toggleDisplayed(event.target.id);
 	});
-}
-
-function toggleDisplayed(element){
-
-	//Check if item is a classTime
-	var idString = element.parentElement.id;
-	var section = getSectionById(idString);
-	var parentElement = $('#' + idString);
-	var children = parentElement.children();
-	
-	console.log(children);
-
-	if(parentElement.hasClass("open")){
-		parentElement.toggleClass("open closed");
-
-		$('#' + idString + '> li').each(function () {
-			console.log(this);
-			$(this).toggleClass("displayed hidden"); 
-
-		});
-
-		sectionList.splice(sectionList.indexOf(section),1);
-	}else{		
-		parentElement.toggleClass("open closed");
-
-
-		$('#' + idString + '> li').each(function () {
-			$(this).toggleClass("displayed hidden"); 
-
-		});
-
-		sectionList.push(section);
-	}
-
-	repaint();
 }
 
 function Tree(obj){
@@ -422,15 +404,6 @@ function Section(obj, course){
 			this.discussions.push(new ClassTime(obj.discussions[d], false, this));
 		}
 	}
-
-	this.getClassTimes = function(){
-		var dup = [this.lecture];
-		for(var d in this.discussions){
-			dup.push(this.discussions[d]);
-		}
-
-		return dup;
-	}
 }
 
 function ClassTime(obj, lecture, section){
@@ -450,41 +423,38 @@ function Time(minutes){
 	this.toMinutes = function(){
 		return this.hour*60 + this.min;
 	};
-
-	this.toString = function(){
-
-		var min = this.toMinutes();
-		var newMin = min % 60;
-		var hour = (min - newMin) / 60;
-		var pm = Math.floor(hour / 12);
-		hour -= pm*12;
-
-		if(hour == 0){
-			hour = 12;
-		}
-
-		var out = hour + ":" 
-
-		if(newMin < 10){
-			out+="0";
-		}
-
-		out += Math.floor(newMin);
-
-		if(pm > 0){
-			out += " PM";
-		}else{
-			out += " AM";
-		}
-
-		return out;
-	}
 }
 
-function getSectionById(idString){
+function toggleDisplayed(idString){
+
+	//Check if item is a classTime
+	var classTime = getClassTimeByIdString(idString);
+
+	if($('#'+idString).hasClass("displayed")){
+		$('#'+idString).toggleClass("displayed hidden");
+		classTimeList.splice(classTimeList.indexOf(classTime),1);
+	}else{
+		$('#'+idString).toggleClass("displayed hidden");
+		classTimeList.push(classTime);
+	}
+	
+	repaint();
+}
+
+function getClassTimeByIdString(idString){
+	console.log(idString);
+
 	var split = idString.split('-');
 	var sectionID = split[1];
 	var courseID = split[2];
+
+	var lecture = false;
+	var disNumber = 0;
+	if(split[3] == 'lecture'){
+		lecture = true;
+	}else{
+		disNumber = split[3].split("dis")[1];
+	}
 
 	for(var p in tree.prefixes){
 		var prefix = tree.prefixes[p];
@@ -497,8 +467,14 @@ function getSectionById(idString){
 			
 			for (var s in course.sections){
 				var section = course.sections[s];
-				if(section.id == sectionID){
-					return section;
+				if(section.id != sectionID){
+					continue;
+				}
+				
+				if(lecture){
+					return section.lecture;
+				}else{
+					return section.discussions[disNumber];
 				}
 			}
 		}
