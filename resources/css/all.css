@@ -77,8 +77,8 @@ li input{
 }
 
 li input + ol{
-  background: url(../images/toggle-small-expand.png) 0px -3px no-repeat;
-  margin: -1.5em 0 .5em -4px;
+  background: url(../images/toggle-small-expand.png) 0px 0px no-repeat;
+  margin: -1.75em 0 .5em -4px;
   height: 1em;
 }
 
@@ -89,7 +89,7 @@ li input + ol > li {
 li input:checked + ol{
   background: url(../images/toggle-small.png) 0px -3px no-repeat;
   margin: -1.5em 0 0 -4px;
-  padding: 1.563em 0 0 20px;
+  padding: 1.25em 0 0 20px; /* The rightmost pixel amount is the indent for each level. The leftmost number is the speacing between adjacent nodes */
   height: auto;
 }
 
