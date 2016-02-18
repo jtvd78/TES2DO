@@ -158,7 +158,15 @@
 	}
 	
 	#site-nav li {
-		
+		font-weight: bold;
+ 		font-size: 12pt;
+  		display: inline-block;
+ 		display: -moz-inline-box;
+  		*display: inline; /* For IE7 */
+ 		zoom: 1; /* Trigger hasLayout */
+  		width: 17%;
+ 		text-align: center;
+  		padding: 0px;
 		position: relative;
 		background: #A81919;
 		float: left;
