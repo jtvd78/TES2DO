@@ -199,9 +199,12 @@ function drawClassTime(classTime, context){
 
 		//Draws discussion/lecture outline
 		if(classTime.lecture){
+			context.lineWidth = 5;
 			context.strokeStyle = "#00FF00";
 		}else{
 			context.strokeStyle = "#FF0000";
+			context.lineWidth = 5;
+
 		}
 		
 		context.beginPath();
@@ -231,6 +234,8 @@ function drawTimeLine(context){
 	
 	//Sets proper colors
 	context.fillStyle = timeLineColor;
+	
+	context.lineWidth = 1;
 	context.strokeStyle = timeLineColor;
 	
 

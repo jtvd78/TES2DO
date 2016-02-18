@@ -133,6 +133,7 @@ li input:checked + ol > li {
     padding-left: 0;
     padding-right: 0;
     height: auto;
+    margin-bottom: 50px;
   }
 
   #header #search { display: block; }
