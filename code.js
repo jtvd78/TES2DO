@@ -442,11 +442,10 @@ function ClassTime(obj, lecture, section){
 
 function Time(minutes){
 
-	this.min = minutes % 60;
-	this.hour = (minutes - this.min) / 60;
+	this.minutes = minutes;
 
 	this.toMinutes = function(){
-		return this.hour*60 + this.min;
+		return minutes;
 	};
 
 	this.toString = function(){
