@@ -10,7 +10,9 @@
 		<link rel="icon" type="image/x-icon" href="resources/images/favicon.ico">
 		<link rel="stylesheet" href="resources/css/umd.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="resources/css/soc.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="/resources/css/all.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="code.js"></script>
 
 		<script>
 
@@ -45,9 +47,6 @@
 				<div id="header-wrapper">
 					<div id="header" class="row">
 						<div id="umd-logo" class="six columns">
-							<a href="http://www.umd.edu/" target="_blank">
-							<img src="resources/images/umd-logo.gif">
-							</a>
 						</div>
 					</div>
 				</div>
@@ -136,8 +135,27 @@
 							</div>
 						</div>
 						<div id="page-overlay"></div>
-						<div id="footer-push"></div>
+						<div id="main">
+
+     
+
+     	 <div class="day" style="color: red">
+      	  <div>M</div><div>T</div><div>W</div><div>Th</div><div>F</div>
+     	 </div>
+
+     	 <div style="">
+     	   <canvas id="scheduleCanvas" width="700" height="700" style="display:inline-block"></canvas>
+      	  <div id="treeDiv" style="display:inline-block; position: absolute">
+       	    <h3 id="treeHeader">Classes:</h3>
+      	  </div>
+     	 </div>
+     	 <div id="colorKey">
+      	  <pre><b><img src="/UMD Wrapper Images/green box.png" alt="green" /><sup> Lecture</sup>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/UMD Wrapper Images/red box.png" alt="red" /> <sup>Discussion</sup></b></pre>
+     	 </div>
+
+  	  </div>
 					</div>
+					<h2>hello</h2>
 					<div id="footer-wrapper">
 						<div id="footer" class="container sixteen colgrid">
 							<div id="footer-inner" class="row">
