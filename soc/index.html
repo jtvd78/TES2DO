@@ -1,25 +1,11 @@
 <!doctype html>
-<!--[if lt IE 7]>	
-<html lang="en-us" class="no-js ie6">
-	<![endif]--> 
-	<!--[if IE 7]>		
-	<html lang="en-us" class="no-js ie7">
-		<![endif]--> 
-		<!--[if IE 8]>		
-		<html lang="en-us" class="no-js ie8">
-			<![endif]--> 
-			<!--[if gte IE 9]>	
-			<html lang="en-us" class="no-js ie9">
-				<![endif]-->
-				<!--[if !IE]> -->	
-<html lang="en-us" class="no-js">
-<!-- <![endif]-->
+
+<html lang="en-us">
+
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta charset="utf-8" />
-		<title>
-			Schedule of Classes
-		</title>
+		<title>Tes2do</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/x-icon" href="resources/images/favicon.ico">
 		<link rel="stylesheet" href="resources/css/umd.css" type="text/css" media="screen" />
@@ -28,29 +14,28 @@
 
 		<script>
 
-		$(document).ready(function(){
-			var tabHoverInHandler = function(event) {
-				$(this).siblings('.selected-tab, .hover-tab').removeClass('hover-tab');
-				$(this).addClass('hover-tab');
-			};
-			
-			var tabHoverOutHandler = function(event) {
+			$(document).ready(function(){
+				var tabHoverInHandler = function(event) {
+					$(this).siblings('.selected-tab, .hover-tab').removeClass('hover-tab');
+					$(this).addClass('hover-tab');
+				};
 				
-				if ((!$(this).hasClass('selected-tab'))  && (event.toElement != this.parentElement)) {
-					$(this).removeClass('hover-tab');
-					$(this).siblings('.selected-tab').addClass('hover-tab');
-				}
+				var tabHoverOutHandler = function(event) {
+					
+					if ((!$(this).hasClass('selected-tab'))  && (event.toElement != this.parentElement)) {
+						$(this).removeClass('hover-tab');
+						$(this).siblings('.selected-tab').addClass('hover-tab');
+					}
+					
+				};
 				
-			};
-			
-			$('ul#site-menu li').hover(tabHoverInHandler, tabHoverOutHandler);
-			
-			$('ul#site-menu').hover(function(event) {}, function(event) {
-				$(this).children().removeClass('hover-tab');
-				$(this).children('.selected-tab').addClass('hover-tab');
+				$('ul#site-menu li').hover(tabHoverInHandler, tabHoverOutHandler);
+				
+				$('ul#site-menu').hover(function(event) {}, function(event) {
+					$(this).children().removeClass('hover-tab');
+					$(this).children('.selected-tab').addClass('hover-tab');
+				});
 			});
-		});
-
 
 		</script>
 	</head>
@@ -77,7 +62,7 @@
 							<div id="app-title">
 								<a href="index.html">
 								<span id="app-title-text">
-								SCHEDULE of CLASSES
+								TES2DO class REGISTRATION
 								</span>
 								</a>
 							</div>
