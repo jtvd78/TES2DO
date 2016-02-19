@@ -271,22 +271,40 @@ var tree;
 
 $(document).ready(function(){
 
-	
+	/*
 	$.getJSON("/resources/json/TestData.json", function(data){
 		tree = new Tree(data);
 		generateTree(tree);
 	})
-	
-	/*
-	$.getJSON("http://localhost:8001/test/", function(data){
-		tree = new Tree(data);
-		generateTree(tree);
-	})
 	*/
-});		
 
-function generateTree(tree){
-	$("#treeDiv").append('<ol id ="treeOl" class="tree">');
+	tree = new Tree();
+
+	addCourse("CMSC132");
+	addCourse("MATH141");
+	
+});
+
+function addCourse(courseID){
+	$.getJSON("/json?class=" + courseID, function(data){
+		tree.addData(data);
+		generateTree();
+	})
+}
+
+function Tree(){
+
+	this.prefixes = [];			
+
+	this.addData = function(json){
+		for(var p in json.prefixes){
+			this.prefixes.push(new Prefix(json.prefixes[p]));
+		}
+	}
+}
+
+function generateTree(){
+	$("#treeDiv").empty().append('<ol id ="treeOl" class="tree">');
 
 	for(var p in tree.prefixes){
 
@@ -370,14 +388,6 @@ function toggleDisplayed(element){
 	}
 
 	repaint();
-}
-
-function Tree(obj){
-
-	this.prefixes = [];
-	for(var p in obj.prefixes){
-		this.prefixes.push(new Prefix(obj.prefixes[p]));
-	}				
 }
 
 function Prefix(obj){
