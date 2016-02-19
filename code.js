@@ -230,6 +230,7 @@ CanvasRenderingContext2D.prototype.drawText = function(text, x, y){
 function drawTimeLine(context){
 	
 	//Sets proper colors
+	context.lineWidth = 1;
 	context.fillStyle = timeLineColor;
 	context.strokeStyle = timeLineColor;
 	
