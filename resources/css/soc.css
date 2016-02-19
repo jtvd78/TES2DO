@@ -148,29 +148,15 @@
 	}
 	
 	#site-nav ul {
-		margin-left: 29px;
 		list-style: none;
 	}
 	
-	/* remove margin-left for ie7 */
-	.ie7 #site-nav ul {
-		margin-left: 0px;
-	}
-	
 	#site-nav li {
-		font-weight: bold;
- 		font-size: 12pt;
-  		display: inline-block;
- 		display: -moz-inline-box;
-  		*display: inline; /* For IE7 */
- 		zoom: 1; /* Trigger hasLayout */
-  		width: 17%;
- 		text-align: center;
-  		padding: 0px;
+		
 		position: relative;
 		background: #A81919;
 		float: left;
-		margin-left: 10px;
+		margin-left: 15px;  /** This is the spacing between tabs at the top */
 		margin-right: 10px;
 		
 		-moz-border-radius: 0px 0px 5px 5px;

@@ -123,7 +123,10 @@ function repaint(){
 
 	//Draws background and grid
 	drawBackground(context);
-	drawGrid(context);
+
+	if(!(sectionList.length == 0)){
+		drawGrid(context);
+	}
 
 	//Draws each classtime in the list of courses
 	for(var s in sectionList){
@@ -136,7 +139,7 @@ function repaint(){
 	}
 
 	//Draws the timeline if its corrosponding boolean is true
-	if(displayTimeLine){
+	if(displayTimeLine && !(sectionList.length == 0)){
 		drawTimeLine(context);
 	}	
 }
@@ -202,7 +205,6 @@ function drawClassTime(classTime, context){
 			context.strokeStyle = "#00FF00";
 		}else{
 			context.strokeStyle = "#FF0000";
-
 		}
 		
 		context.beginPath();
@@ -263,8 +265,6 @@ function getRandomColor(){
 function pxToMin(px){
 	return startHour*60 + (px/height)*((endHour - startHour)*60)
 }
-
-
 
 ////
 var tree;

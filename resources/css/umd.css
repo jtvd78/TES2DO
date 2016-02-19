@@ -1,5 +1,6 @@
 @import url(gumby.hybrid.css);
 @import url(other.css);
+@import url(custom.css);
 
 @font-face {
 	font-family: Serif72;
