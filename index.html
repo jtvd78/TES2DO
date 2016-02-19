@@ -34,7 +34,6 @@
                     $(this).children('.selected-tab').addClass('hover-tab');
                 });
             });
-            
         </script>
     </head>
     <body>
@@ -45,7 +44,7 @@
                         <div id="umd-logo" class="six columns">
                             <a href="http://www.umd.edu/" target="_blank">
                             <img src="resources/images/umd-logo.gif">
-                            </a>
+                            </a>                        
                         </div>
                         <form method="get" action="http://www.searchum.umd.edu/search">
                             <div id="search">
@@ -137,6 +136,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- MAIN -->
                             <div id="main" class="row">
                                 <div class="day" style="color: red">
                                     <div>M</div>
@@ -144,18 +144,23 @@
                                     <div>W</div>
                                     <div>Th</div>
                                     <div>F</div>
+                                    <div></div>     
+                                    <h3 id="treeHeader"><b><u>Classes:</u></b></h3>     
+                                    <div></div>
                                 </div>
                                 <div style="">
                                     <canvas id="scheduleCanvas" width="700" height="700" style="display:inline-block"></canvas>
                                     <div id="treeDiv" style="display:inline-block; position: absolute">
-                                        <h3 id="treeHeader">Classes:</h3>
+                                        <!--<h3 id="treeHeader">Classes:</h3>-->
                                     </div>
                                 </div>
                                 <div id="colorKey">
                                     <pre><b><img src="/resources/images/green box.png" alt="green" /><sup> Lecture</sup>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/resources/images/red box.png" alt="red" /> <sup>Discussion</sup></b></pre>
                                 </div>
                             </div>
+                            <!-- END OF MAIN -->
                         </div>
+
                         <div id="page-overlay"></div>
                         <div id="footer-push"></div>
                     </div>
@@ -163,7 +168,8 @@
                         <div id="footer" class="container sixteen colgrid">
                             <div id="footer-inner" class="row">
                                 <div id="umd-institution-info" class="seven columns">
-                                    <div id="usm-info">Flagship Institution of the <a href="http://www.usmd.edu/">University System of Maryland</a></div>
+                                    <div id="usm-info">Flagship Institution of the <a href="http://www.usmd.edu/">University System of Maryland</a>
+                                    </div>
                                     <div id="umd-address-info">
                                         <span id="umd-address">University of Maryland, College Park, MD 20742, USA</span>
                                         <span id="umd-address-separator"> / </span>
