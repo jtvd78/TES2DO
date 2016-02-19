@@ -202,6 +202,7 @@ function drawClassTime(classTime, context){
 			context.strokeStyle = "#00FF00";
 		}else{
 			context.strokeStyle = "#FF0000";
+
 		}
 		
 		context.beginPath();
@@ -232,6 +233,8 @@ function drawTimeLine(context){
 	//Sets proper colors
 	context.lineWidth = 1;
 	context.fillStyle = timeLineColor;
+	
+	context.lineWidth = 1;
 	context.strokeStyle = timeLineColor;
 	
 

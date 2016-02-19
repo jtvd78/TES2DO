@@ -45,7 +45,6 @@ img {
 
 }
 
-
 p{
   font-size: 1em;
   margin: 0 0 1em 0;
@@ -176,6 +175,7 @@ li input:checked + ol > li {
   #header #search-link { display: none; }
 
 }
+
 /*everything in main*/
 .day > div {
   font-weight: bold;
@@ -186,4 +186,16 @@ li input:checked + ol > li {
   zoom: 1; /* Trigger hasLayout */
   width: 14%;
   text-align: center;
+}
+
+/**
+ * Main container
+ */
+#main {
+  border-radius: 15px;
+  min-height: 300px;
+  background-color: #FFF;
+  width:970px;
+  margin: auto; 
+  padding: 10px;
 }
