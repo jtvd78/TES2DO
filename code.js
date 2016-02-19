@@ -174,7 +174,7 @@ function drawGrid(context){
 //Draws a classtime
 function drawClassTime(classTime, context){
 
-	context.lineWidth = 2;
+	context.lineWidth = 6;
 
 	//Loops through the days
 	for(dayCtr = 0; dayCtr < classTime.days.length; dayCtr++){
@@ -199,16 +199,14 @@ function drawClassTime(classTime, context){
 
 		//Draws discussion/lecture outline
 		if(classTime.lecture){
-			context.lineWidth = 5;
 			context.strokeStyle = "#00FF00";
 		}else{
 			context.strokeStyle = "#FF0000";
-			context.lineWidth = 5;
 
 		}
 		
 		context.beginPath();
-		context.rect(ctX + 1, ctY + 1, ctWidth - 2, ctHeight - 2);
+		context.rect(ctX + 3, ctY + 3, ctWidth - 6, ctHeight - 6);
 		context.stroke();
 
 		//Draws classtime text
