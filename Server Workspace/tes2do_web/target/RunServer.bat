@@ -1,0 +1,1 @@
+java -jar jetty-runner.jar tes2do-1.0-SNAPSHOT.war

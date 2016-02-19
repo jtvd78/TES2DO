@@ -1,0 +1,429 @@
+@import url(gumby.hybrid.css);
+@import url(other.css);
+@import url(custom.css);
+
+@font-face {
+	font-family: Serif72;
+	src:	url('../fonts/serif72beta-umd.eot');
+	src:	url('../fonts/serif72beta-umdd41d.eot?#iefix') format('embedded-opentype'),
+			url('../fonts/serif72beta-umd.woff') format('woff'),
+			url('../fonts/serif72beta-umd.ttf') format('truetype');
+}
+
+/* umd skin styles
+================================================== */
+
+html, body, #umd-frame-wrapper {
+	height: 100%;
+}
+
+#umd-frame-wrapper {
+	margin: 0 auto;
+}
+
+#umd-frame {
+	position: relative;
+	padding: 0;
+	text-align: left;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	background: #fff;
+}
+
+/* titlebar */
+
+div#title-bar {
+	text-align: left;
+	cursor: default;
+}
+
+div#app-title {
+	float: left;
+}
+
+div#department-title {
+	float: right;
+}
+
+div#app-title a, div#department-title a {
+	font-family: Serif72, Times, serif;
+	color: #eee;
+}
+
+div#app-title a:hover, div#department-title a:hover {
+	text-decoration: none;
+}
+
+div#department-title a {
+	float: right;
+}
+
+/* main content */
+
+#content-wrapper {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+/* footer */
+
+div#footer-wrapper {
+	
+	background: #000;
+	
+	/* to put the footer at the bottom of the page */
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	
+	margin: 0;
+	padding: 0;
+	
+}
+
+div#footer {
+	background: #fff url(../images/footer-bg.png) bottom left repeat-x;
+}
+
+#footer-inner {
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 18px;
+}
+
+#umd-institution-info {
+	text-align: left;
+}
+
+#usm-info {
+	font-weight: bold;
+}
+
+#umd-terrapin-shell {}
+
+#umd-terrapin-shell img {}
+
+
+@media handheld, only screen and (max-device-width: 768px) {
+	
+	.container {
+		padding: 0 7px;
+	}
+	
+	#umd-frame-wrapper {
+		min-width: 304px;
+		padding: 0;
+	}
+	
+	#umd-frame {
+		margin: 0;
+	}
+	
+	div#umd-container {
+		-moz-border-radius: 0;
+		-webkit-border-radius: 0;
+		border-radius: 0;
+	}
+	
+	div#header-wrapper {
+		display: none;
+	}
+	
+	div#title-bar-wrapper {
+		height: 55px;
+		background: #A81919;
+	}
+	
+	div#title-bar {
+		padding: 5px 0;
+	}
+	
+	div#mobile-umd-logo {
+		display: block;
+		float: left;
+	}
+	
+	div#mobile-umd-logo a {
+		display: block;
+	}
+	
+	div#mobile-umd-logo a img {
+		width: 45px;
+	}
+	
+	div#app-title {
+		float: left;
+		margin: 13px 0 0 7px;
+	}
+	
+	#app-title-text {
+		font-size: 23px;
+	}
+	
+	div#department-title {
+		display: none;
+	}
+	
+	#content-wrapper {
+		padding: 0;
+	}
+	
+	/* footer */
+	
+	#footer-push {
+		height: 91px;
+	}
+	
+	div#footer-wrapper {}
+	
+	div#footer {
+		background-size: 100% 100%;
+	}
+	
+	#footer-inner {
+		font-size: 10px;
+		line-height: 15px;
+		width: 280px;
+		margin: 0 auto;
+		padding-top: 6px;
+	}
+	
+	#umd-institution-info, #umd-other-info {
+		float: left;
+		text-align: left;
+		clear: left;
+		margin-left: 0;
+	}
+	
+	#umd-terrapin-shell {
+		float: right;
+		text-align: right;
+		margin-top: -18px;
+	}
+	
+	#umd-terrapin-shell img {
+		width: 45px;
+	}
+	
+	#umd-address {
+		display: block;
+	}
+	
+	#umd-address-separator {
+		display: none;
+	}
+	
+	#umd-copyright-label {
+		display: none;
+	}
+	
+	#umd-copyright {
+		display: block;
+	}
+	
+	#umd-copyright-separator {
+		display: none;
+	}
+	
+	#umd-contact-info {
+		float: left !important;
+		display: inline !important;
+	}
+	
+	#umd-contact-rest {
+		display: none;
+	}
+	
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 768px) {
+	
+	#login {
+		position: relative;
+		top: 0;
+		right: 0;
+		padding-right: 14px;
+	}
+	
+	#footer-inner {
+		width: 100%;
+	}
+	
+	#umd-terrapin-shell {
+		margin-top: 0;
+		margin-right: 0;
+	}
+	
+	#umd-terrapin-shell img {
+		width: 65px;
+	}
+	
+}
+
+/*
+@media handheld, only screen and (min-width: 480px) and (max-width: 767px) {
+	
+	div#title-bar {
+		padding: 15px 0;
+	}
+	
+	div#registrar-logo {
+		display: none;
+	}
+	
+	div#footer {
+		height: 89px;
+		-moz-border-radius: 0 0 6px 6px;
+		-webkit-border-radius: 0 0 6px 6px;
+		border-radius: 0 0 6px 6px;
+		border-bottom: 1px solid #fff;
+		border-left: 1px solid #fff;
+		border-right: 1px solid #fff;
+	}
+	
+	#footer-inner {
+		font-size: 10px;
+		width: 100%;
+		margin: 0 auto;
+		padding-top: 6px;
+	}
+	
+	#umd-institution-info, #umd-other-info {
+		float: left;
+		text-align: left;
+		width: 365px !important;
+	}
+	
+	#umd-terrapin-shell {
+		float: right !important;
+		margin-top: 8px;
+		margin-right: 0;
+	}
+	
+}
+*/
+
+@media only screen and (min-device-width: 769px) {
+	
+	body {
+		background: #000 url(../images/body-bg.gif) repeat-x top left;
+	}
+	
+	#umd-frame-wrapper {
+		min-width: 960px;
+		max-width: 1140px;
+		margin-bottom: -87px;
+	}
+	
+	/* header */
+	
+	#header-wrapper {
+		background: transparent url(../images/header-bg.gif) no-repeat top left;
+		padding-bottom: 10px; 
+	}
+	
+	#header {
+		padding: 13px 0; /* padding-bottom extends the bg header image down further to fill in the white corners above the container */
+	}
+	
+	#umd-logo {
+		float: left;
+	}
+	
+	div#login a {
+		float: right;
+		margin: 7px 0 10px 0;
+		color: #444;
+	}
+	
+	div#umd-container {
+		background: #fff;
+		-moz-border-radius: 6px 6px 6px 6px;
+		-webkit-border-radius: 6px 6px 6px 6px;
+		border-radius: 6px 6px 6px 6px;
+		overflow: hidden;
+		padding-bottom: 50px;
+		margin-top: -16px; /* pulls the container up so that the white corners are filled in by the header bg */
+	}
+	
+	/* titlebar */
+	
+	div#title-bar-wrapper {
+		height: 55px;
+		background: #000 url(../images/titlebar.gif) repeat-x;
+		-moz-border-radius: 6px 6px 0px 0px;
+		-webkit-border-radius: 6px 6px 6px 6px;
+		border-radius: 6px 6px 0px 0px;
+	}
+	
+	#title-bar {
+		padding: 15px 0;
+	}
+	
+	div#app-title, div#department-title {
+		padding-top: 3px;
+	}
+	
+	div#app-title a, div#department-title a {
+		font-size: 25px;
+	}
+	
+	div#mobile-umd-logo {
+		display: none;
+	}
+	
+	/* footer */
+	
+	#footer-push {
+		height: 99px;
+	}
+	
+	div#footer-wrapper {
+		height: 105px;
+	}
+	
+	div#footer {
+		height: 89px;
+		-moz-border-radius: 0 0 6px 6px;
+		-webkit-border-radius: 0 0 6px 6px;
+		border-radius: 0 0 6px 6px;
+		border-bottom: 1px solid #fff;
+		border-left: 1px solid #fff;
+		border-right: 1px solid #fff;
+	}
+	
+	#footer-inner {
+		font-size: 12px;
+	}
+	
+	#umd-institution-info, #umd-other-info {
+		padding-top: 36px;
+	}
+	
+	#umd-address-info {
+		white-space: nowrap;
+	}
+	
+	#umd-terrapin-shell {
+		background: transparent url(../images/footer-shell-bg.png) top center no-repeat;
+		text-align: center;
+		padding-top: 7px;
+	}
+	
+	#umd-phone-label {
+		display: none;
+	}
+	
+	#umd-other-info {
+		text-align: right;
+	}
+	
+	#umd-contact-info {
+		display: inline-block;
+	}
+	
+	#umd-contact-separator {
+		display: none;
+	}
+	
+}

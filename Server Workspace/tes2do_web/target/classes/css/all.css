@@ -1,0 +1,170 @@
+img {
+  border: none;
+}
+
+/*everything in main*/
+.day > div {
+  font-weight: bold;
+  font-size: 12pt;
+  display: inline-block;
+  display: -moz-inline-box;
+  *display: inline; /* For IE7 */
+  zoom: 1; /* Trigger hasLayout */
+  width: 14%;
+  text-align: center;
+}
+
+/**
+ *Tree stuff below here
+ */
+.displayed{
+  background-color:green;
+}
+
+#treeDiv{
+  overflow: auto;
+  height:700px;
+}
+
+#treeHeader{
+  font-family: verdana;
+  font-size: 12pt;
+  color: red;
+  text-align: center;
+  display: inline-block;
+  width: 0%;
+  text-align: center;
+
+}
+
+p{
+  font-size: 1em;
+  margin: 0 0 1em 0;
+}
+  
+/* CSS Tree menu styles */
+ol.tree{
+  padding: 0 0 0 10px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+li { 
+  position: relative;
+  list-style: none;
+}
+
+li label{
+  background: url(../images/folder-horizontal.png) 13px 0px no-repeat;
+  cursor: pointer;
+  display: block;
+  padding-left: 33px;
+}
+
+li input{
+  position: absolute;
+  left: 0;
+  margin-left: 0;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+  top: 0;
+}
+
+li input + ol{
+  background: url(../images/toggle-small-expand.png) 0px 0px no-repeat;
+  margin: -1.5em 0 .5em -4px;
+  height: 1em;
+}
+
+li input + ol > li {
+  display: none;
+}
+
+li input:checked + ol{
+  background: url(../images/toggle-small.png) 0px 0px no-repeat;
+  margin: -1.563em 0 0 -4px;
+  padding: 1.5em 0 0 20px; /* The rightmost pixel amount is the indent for each level. The leftmost number is the speacing between adjacent nodes */
+  height: auto;
+}
+
+li input:checked + ol > li:last-child { 
+  margin: 0 0 0.063em; /* 1px */ 
+}
+
+li input:checked + ol > li {
+  display: block;
+  margin: 0 0 0.125em;  /* 2px */
+}
+
+/**
+ * Wrapper stuff below here
+ */
+
+#header #search-link {
+  position: absolute;
+  right: -59px;
+}
+
+#header #search {
+  float: right;
+  display: none;
+}
+
+#header #search .text {
+  background: transparent url(../images/search-text.png) top left no-repeat;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#colorKey{
+  display:inline-block;
+  font-size: 10.5pt;
+  padding-left: 10px;
+  height: 12px;
+} 
+
+#header #search input[type=text] {
+  margin: 0;
+  padding: 0 10px;
+  border: none;
+  width: 166px;
+  height: 27px;
+  line-height: 27px;
+  color: #898989;
+  background-color: transparent
+}
+
+#header #search input[type=submit] {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 74px;
+  height: 27px;
+  background: transparent url(../images/search-submit.png) 0 0 no-repeat;
+  text-indent: -9999px;
+  outline: none;
+}
+
+#header #search input[type=submit]:hover { background-position: 0 -27px; }
+#header #search input[type=submit]:active { background-position: 0 -54px; }
+
+#header #search .site_search {
+  margin-top: 5px;
+  font-size: 11px;
+  text-align: right;
+  color: #fff;
+}
+
+/**
+ * Responsive
+ */
+@media all and (min-width: 768px) {
+
+  #header #search { display: block; }
+  #header #search-link { display: none; }
+
+}
+
