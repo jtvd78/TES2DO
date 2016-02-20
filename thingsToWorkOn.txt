@@ -1,0 +1,8 @@
+change color for border/class
+make class add bar not case sensitive
+when you add a class, folder of that class opens to reveal sections
+days heading still off center
+tree header still off center
+dynamically load tree classes
+add filter schedule of classes style (functionality wise)
+scale text size to zoom level for schedule
