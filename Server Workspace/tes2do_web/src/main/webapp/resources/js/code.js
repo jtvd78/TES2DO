@@ -37,6 +37,9 @@ var displayTimeLine = true;
 //List of Sections being displayed
 var sectionList = [];
 
+//Tree variable that stores all info for objects in Course Tree
+var tree;
+
 //Kind of like a main method
 $( document ).ready(function() {
 	start();	
@@ -50,6 +53,15 @@ function start(){
 	}).mouseleave(function() {
 		setDisplayTimeLine(false);
 	});
+
+	$("#addCourseButton").click( function(event){
+		addCourse($('#addCourseField').val());
+	})
+
+	tree = new Tree();
+
+	addCourse("CMSC132");
+	addCourse("MATH141");
 
 	repaint();
 }
@@ -266,24 +278,8 @@ function pxToMin(px){
 	return startHour*60 + (px/height)*((endHour - startHour)*60)
 }
 
-////
-var tree;
+////TREE STUFF BELOW HERE////
 
-$(document).ready(function(){
-
-	/*
-	$.getJSON("/resources/json/TestData.json", function(data){
-		tree = new Tree(data);
-		generateTree(tree);
-	})
-	*/
-
-	tree = new Tree();
-
-	addCourse("CMSC132");
-	addCourse("MATH141");
-	
-});
 
 function addCourse(courseID){
 	$.getJSON("/json?class=" + courseID, function(data){
