@@ -1,4 +1,4 @@
-package main.java.tes2do.server;
+package main.java.com.tes2do.server;
 
 //Import required java libraries
 import java.io.*;
@@ -13,33 +13,27 @@ import com.google.gson.Gson;
 
 //Extend HttpServlet class
 public class Server extends HttpServlet {
-
-	private String message;
 	
 	@Override
 	public void init() throws ServletException{
 	   // Do required initialization
-	   message = "Hello World";
 	}
 	
 	@Override
-	public void doGet(HttpServletRequest request,HttpServletResponse response)
-	         throws ServletException, IOException{
-	   // Set response content type
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		
 	   response.setContentType("text/html");
-	
-	   // Actual logic goes here.
 	   PrintWriter out = response.getWriter();
 	   
-	   String requestedClass = request.getParameter("class");	
-		
-		
+	   String requestedClass = request.getParameter("class");
+	   requestedClass = requestedClass.toUpperCase();
 	   
-       	Schedule s = new Schedule();
-   		s.addCourseById(requestedClass);
+	   System.out.println(requestedClass);
+	   
+	   Schedule s = new Schedule();
+	   s.addCourseById(requestedClass);
    		
-   		String json = new Gson().toJson(s);	   
-	   
+	   String json = new Gson().toJson(s);
 	   out.println(json);
 	}
 	

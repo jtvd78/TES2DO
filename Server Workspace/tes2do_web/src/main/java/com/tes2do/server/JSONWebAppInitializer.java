@@ -15,6 +15,8 @@ public class JSONWebAppInitializer implements ServletContainerInitializer, Servl
 	
 	@Override
 	public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
+		System.out.println("onStartup");
+		
 		if(!initialized){
 			ServletRegistration reg = ctx.addServlet("json", "main.java.tes2do.server.Server");
 			reg.addMapping("/json");
@@ -30,6 +32,8 @@ public class JSONWebAppInitializer implements ServletContainerInitializer, Servl
 
 	@Override
 	public void contextInitialized(ServletContextEvent e) {
+		System.out.println("contextInitialized");
+		
 		if(!initialized){
 			ServletRegistration reg = e.getServletContext().addServlet("json", "main.java.tes2do.server.Server");
 			reg.addMapping("/json");

@@ -19,6 +19,10 @@ public class ClassTime{
 	private int[] days;
 	private boolean lecture;
 	
+	String building;
+	String room;
+	
+	
 	/**
 	 * Constructor that makes a ClassTime from an HTML Element e
 	 * @param e HTML Element
@@ -26,10 +30,16 @@ public class ClassTime{
 	 * @param lecture boolean if lecture or not
 	 */
 	public ClassTime(Element e, boolean lecture){
+		
+		this.lecture = lecture;		
 		days = getDays(e.select(".section-days").text());		
 		startTime = getTimeInMinutes(e.select(".class-start-time").text());
 		endTime = getTimeInMinutes(e.select(".class-end-time").text());
-		this.lecture = lecture;
+		
+		String building = e.select(".class-building").text();
+		String[] buildingParts = building.split(" ");
+		building = buildingParts[0];
+		room = buildingParts[1];	
 	}
 	
 	/**

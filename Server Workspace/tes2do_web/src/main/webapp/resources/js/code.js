@@ -55,6 +55,7 @@ function start(){
 	});
 
 	$("#addCourseButton").click( function(event){
+		console.log("HI");
 		addCourse($('#addCourseField').val());
 	})
 
@@ -282,6 +283,7 @@ function pxToMin(px){
 
 
 function addCourse(courseID){
+	console.log("ADD COURSE");
 	$.getJSON("/json?class=" + courseID, function(data){
 		tree.addData(data);
 		generateTree();
