@@ -290,17 +290,6 @@ function addCourse(courseID){
 	})
 }
 
-function Tree(){
-
-	this.prefixes = [];			
-
-	this.addData = function(json){
-		for(var p in json.prefixes){
-			this.prefixes.push(new Prefix(json.prefixes[p]));
-		}
-	}
-}
-
 function generateTree(){
 	$("#treeDiv").empty().append('<ol id ="treeOl" class="tree">');
 
@@ -317,6 +306,10 @@ function generateTree(){
 		for(var c in prefix.courses){
 
 			var course = prefix.courses[c];
+
+			console.log(course);
+
+
 			$('#prefix-' + prefix.code + '-ol').append(
 			'<li  id="course-' + course.id + '-li">' + 
 			'<label for="course-' + course.id + '">' + course.id + " : " +course.name + '</label>' + 
@@ -388,13 +381,53 @@ function toggleDisplayed(element){
 	repaint();
 }
 
+function Tree(){
+
+	this.prefixes = [];			
+
+	this.addData = function(json){
+		for(var p in json.prefixes){
+			var newPrefix = json.prefixes[p];
+			var foundPrefix = false;
+
+			//Check if prefix already exists. If it does, merge.
+			for(var innerPctr in this.prefixes){
+				var innerP = this.prefixes[innerPctr];
+
+				console.log(innerP.code + " : " + newPrefix.code);
+
+				if(innerP.code === newPrefix.code){
+					console.log("same found");
+					innerP.addData(newPrefix);
+					foundPrefix = true;
+				}
+			}
+
+			if(!foundPrefix){
+				this.prefixes.push(new Prefix(newPrefix));
+			}
+		}
+	}
+}
+
 function Prefix(obj){
+	console.log(obj.code);
 
 	this.title = obj.title;
 	this.code = obj.code;
 	this.courses = [];
 	for(var c in obj.courses){
 		this.courses.push(new Course(obj.courses[c]));
+	}
+
+	this.addData = function(json){
+		for(var c in json.courses){
+
+			console.log("HELLO");
+			console.log(json.courses[c]);
+
+			this.courses.push(new Course(json.courses[c]));
+		}
 	}
 }
 
