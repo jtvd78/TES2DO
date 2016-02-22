@@ -36,8 +36,8 @@ public class ClassTime{
 		startTime = getTimeInMinutes(e.select(".class-start-time").text());
 		endTime = getTimeInMinutes(e.select(".class-end-time").text());
 		
-		String building = e.select(".class-building").text();
-		String[] buildingParts = building.split(" ");
+		String buildingText = e.select(".class-building").text();
+		String[] buildingParts = buildingText.split(" ");
 		building = buildingParts[0];
 		room = buildingParts[1];	
 	}

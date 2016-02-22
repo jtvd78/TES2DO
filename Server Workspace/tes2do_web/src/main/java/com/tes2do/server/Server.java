@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.Enumeration;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import main.java.com.tes2do.schedule.Schedule;
@@ -12,11 +13,12 @@ import main.java.com.tes2do.schedule.Schedule;
 import com.google.gson.Gson;
 
 //Extend HttpServlet class
+@WebServlet(value="/json", loadOnStartup=1)
 public class Server extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException{
-	   // Do required initialization
+	   System.out.println("Servlet Init init");
 	}
 	
 	@Override
@@ -27,8 +29,6 @@ public class Server extends HttpServlet {
 	   
 	   String requestedClass = request.getParameter("class");
 	   requestedClass = requestedClass.toUpperCase();
-	   
-	   System.out.println(requestedClass);
 	   
 	   Schedule s = new Schedule();
 	   s.addCourseById(requestedClass);
