@@ -523,7 +523,6 @@ function Time(minutes){
 	}
 }
 
-
 function getSectionById(idString){
 	var split = idString.split('-');
 	var sectionID = split[1];
