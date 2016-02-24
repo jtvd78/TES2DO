@@ -24,7 +24,6 @@
                         $(this).removeClass('hover-tab');
                         $(this).siblings('.selected-tab').addClass('hover-tab');
                     }
-                    
                 };
                 
                 $('ul#site-menu li').hover(tabHoverInHandler, tabHoverOutHandler);
@@ -148,10 +147,15 @@
                                     <h3 id="treeHeader"><b><u>Classes:</u></b></h3>     
                                     <div></div>
                                 </div>
-                                <div>
-                                <input type="text" id="addCourseField">
-                                <button id="addCourseButton"type="button">Add Course</button>
+
+                                <div style="text-align:right">
+                                    <div>
+                                        <input type="text" id="addCourseField">
+                                        <button id="addCourseButton"type="button">Add Course</button>
+                                    </div>
                                 </div>
+
+
                                 <div>
                                     <canvas id="scheduleCanvas" width="700" height="700" style="display:inline-block"></canvas>
                                     <div id="treeDiv" style="display:inline-block; position: absolute"></div>
