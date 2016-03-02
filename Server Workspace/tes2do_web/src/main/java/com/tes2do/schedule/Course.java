@@ -38,6 +38,7 @@ public class Course{
 	public String getName(){
 		return name;
 	}
+
 	
 	public boolean equalsCourse(Course course){		
 		//Two courses are equal if they have the same ID
@@ -80,7 +81,7 @@ public class Course{
 	public String getCourseID(){
 		return id;
 	}
-	
+	 
 	private void initSections(){		
 		try {
 			Document times = Jsoup.connect(URLMaker.getCourseTimeURL(id)).get();
